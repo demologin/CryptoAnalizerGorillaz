@@ -1,0 +1,14 @@
+### IntelliJ IDEA ###
+out/
+target/
+!**/src/main/**/out/
+!**/src/test/**/out/
+*.iml
+.idea/
+
+
+### Mac OS ###
+.DS_Store
+
+### Demo result ###
+/text/*.txt
