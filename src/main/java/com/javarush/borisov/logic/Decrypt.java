@@ -2,6 +2,7 @@ package com.javarush.borisov.logic;
 
 import java.io.*;
 
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 
 
@@ -18,25 +19,30 @@ public class Decrypt {
 
     }
 
-    public void runDecrypt() {
+    public void runDecrypt() throws Exception {
+        if (!pathToDecryptedFile.toFile().canWrite()) {
+            throw new AccessDeniedException("");
+        }
+        if (!pathToFileToDecrypt.toFile().exists()) {
+            throw new FileNotFoundException();
+        }
         try (InputStream inputStream = new FileInputStream(pathToFileToDecrypt.toFile());
              InputStreamReader reader = new InputStreamReader(inputStream);
              OutputStream outputStream = new FileOutputStream(pathToDecryptedFile.toFile());
              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream)) {
 
 
-            int length;
+            int c;
 
-            while ((length = reader.read()) > 0) {
+            while ((c = reader.read()) > 0) {
 
 
-                int a = decryptedMyChar(length);
+                int a = decryptedMyChar(c);
                 outputStreamWriter.write(a);
 
             }
-        } catch (IOException e) {
-
-            throw new RuntimeException(e);
+        }catch (Exception e) {
+            throw new Exception(e);
         }
     }
 

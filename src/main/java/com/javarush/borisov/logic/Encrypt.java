@@ -27,7 +27,7 @@ public class Encrypt {
 
     public void runEncrypt() throws IOException {
 
-        System.out.println("Шифрация...");
+        System.out.println(Messages.ENCODE);
 
         List<String> list = Files.readAllLines(pathToFileToEncrypt);
 
@@ -48,7 +48,7 @@ public class Encrypt {
         }
 
 
-        System.out.println("Файл зашифрован");
+        System.out.println(Messages.ENCODE_FINISH);
 
     }
 

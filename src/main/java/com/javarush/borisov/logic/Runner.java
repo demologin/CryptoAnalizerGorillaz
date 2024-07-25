@@ -1,7 +1,8 @@
 package com.javarush.borisov.logic;
 
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
+
 import java.nio.file.AccessDeniedException;
 
 public class Runner {
@@ -9,7 +10,7 @@ public class Runner {
 
     public void run(MainMenu menu){
         int choice=0;
-        while(choice != 3) {
+        while(choice != 9) {
             choice = menu.getCommand();
             try {
                 switch (choice) {
@@ -25,14 +26,19 @@ public class Runner {
                         Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
                         decrypt.runDecrypt();
                     }
-                    case 3 -> {
+                    case 9 -> {break;}
 
-                    }
+                    default -> System.out.println(Messages.WRONG_NUMBER);
                 }
             }catch (AccessDeniedException e){
-                System.out.println("\nне могу создать файл (отказано в доступе, давай по новой)\n");
-            }catch (IOException e){
-                System.out.println("\nфайл по указанному пути отсутсвует, давай по новой\n");
+
+                System.out.println(Messages.ACCESS_DENIED);
+
+            }catch (FileNotFoundException e){
+
+                System.out.println(Messages.FILE_NOT_FOUND);
+            }catch (Exception e){
+                System.out.println(Messages.UNKNOWN_ERROR);
             }
 
         }

@@ -12,11 +12,11 @@ public  class MainMenu {
         this.scan=scan;
     }
     public  int getCommand(){
-        System.out.println("ver 1.00 реализовано только для небольших файлов\nВыберете действие");
+        System.out.println(Messages.GREETINGS);
         Scanner scan = new Scanner(System.in);
-        System.out.println("1 - зашифровать");
-        System.out.println("2 - расшифровать");
-        System.out.println("3 - выход");
+        System.out.println(Messages.MENU_ENCODE);
+        System.out.println(Messages.MENU_DECODE);
+        System.out.println(Messages.MENU_EXIT);
         while(true) {
             try {
                 choice = Integer.parseInt(scan.nextLine());
