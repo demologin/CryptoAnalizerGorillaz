@@ -12,7 +12,7 @@ public  class MainMenu {
         this.scan=scan;
     }
     public  int getCommand(){
-        System.out.println("Выберете действие");
+        System.out.println("ver 1.00 реализовано только для небольших файлов\nВыберете действие");
         Scanner scan = new Scanner(System.in);
         System.out.println("1 - зашифровать");
         System.out.println("2 - расшифровать");
