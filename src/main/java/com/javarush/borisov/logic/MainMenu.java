@@ -4,10 +4,8 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public  class MainMenu {
-    private Path pathOfFile;
-    private Path pathToEncryptedFile;
-    private int key;
-    private Scanner scan;
+
+    private final Scanner  scan;
 
 
     public MainMenu(Scanner scan){
@@ -23,9 +21,9 @@ public  class MainMenu {
         return choice;
 
     }
-    public  Path getPathOfFile(){
+    public  Path getPathToGetFile(){
         System.out.println("введите путь к файлу: ");
-        pathOfFile = Path.of(scan.nextLine());
+        Path pathOfFile = Path.of(scan.nextLine());
         return pathOfFile;
     }
     public int getKey(){
@@ -33,11 +31,12 @@ public  class MainMenu {
 
         return scan.nextLine().length();
     }
-    public Path getPathToEncryptedFile(){
+    public Path getPathToSaveFile(){
         System.out.println("введите место сохранения файла ");
 
-        pathToEncryptedFile = Path.of(scan.nextLine());
+        Path pathToEncryptedFile = Path.of(scan.nextLine());
         return pathToEncryptedFile;
     }
+
 
 }

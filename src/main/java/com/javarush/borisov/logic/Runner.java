@@ -1,20 +1,28 @@
 package com.javarush.borisov.logic;
 
-import java.nio.file.Path;
+
 
 public class Runner {
 
 
     public void run(MainMenu menu){
+        while(true) {
+            int choice = menu.getCommand();
+            switch (choice) {
+                case 1 -> {
 
-       int choice= menu.getCommand();
-        switch (choice) {
-            case 1 -> {
+                    Encrypt encrypt = new Encrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
 
-                Encrypt encrypt = new Encrypt(menu.getPathOfFile(),menu.getKey(),menu.getPathToEncryptedFile());
-                encrypt.runEncrypt();
+                    encrypt.runEncrypt();
 
+
+                }
+                case 2 -> {
+                    Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile() );
+                    decrypt.runDecrypt();
+                }
             }
+            break;
         }
     }
 }

@@ -1,21 +1,23 @@
 package com.javarush.borisov.logic;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 
 public  class Encrypt {
-    private  Path pathToFileToEncrypt;
-    private Path pathToEncryptedFile;
-    private int key;
+    private  final Path pathToFileToEncrypt;
+    private final Path pathToEncryptedFile;
+    private final int key;
     private List<String> list;
     private final char[] alphabet = {'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м',
             'н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я'};
+    private final char[] simbols = {' ',',','.','/','?','<','>','"',':',';','+','-','='};
 
 
     public Encrypt(Path pathToFileToEncrypt, int key, Path pathToEncryptedFile) {
@@ -32,7 +34,7 @@ public  class Encrypt {
         try {
            list  = Files.readAllLines(pathToFileToEncrypt);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Файл не найден");
         }
         for (int i = 0; i < list.size(); i++) {
             char[] tmp = list.get(i).toCharArray();
@@ -44,16 +46,33 @@ public  class Encrypt {
         }
         System.out.println(list);
 
+        try {
+            Files.writeString(pathToEncryptedFile,list.get(0), Charset.defaultCharset());
+            for (int i = 1; i < list.size(); i++) {
+
+                Files.writeString(pathToEncryptedFile,"\n" +list.get(i), StandardOpenOption.APPEND);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Файл зашифрован");
+
     }
 
     private char alphabetNewChar(char tmp, int key) {
-        int index = Arrays.binarySearch(alphabet, tmp);
-        if (index + key >= alphabet.length){
-            int temp = alphabet.length - 1 - index;
-
-            return alphabet[temp];
+        int index = Arrays.binarySearch(Const.alphabet, tmp);
+        if (index==-1){
+            return tmp;
         }
-        return alphabet[index + key];
+
+        if (index + key >= Const.alphabet.length){
+            int temp = Const.alphabet.length - 1 - index;
+
+            return Const.alphabet[temp];
+        }
+        return Const.alphabet[index + key];
     }
 
 
