@@ -14,25 +14,26 @@ public class ConsoleRunner {
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("adress?");
-        String sourceString = scanner.nextLine();
-        String sourceList = Files.readString(PathBuilder.getPath(sourceString));
+
         System.out.println("deystvie");
         int mod = scanner.nextInt();
-        switch (mod) {
+
+        String sourceString = "D:\\java\\Pr\\1\\src.txt";
+        String sourceList = Files.readString(PathBuilder.getPath(sourceString));
+        System.out.println("key?");
+        int key = scanner.nextInt();
+        alphStrToMap(arrayList,ALPHABET);
+        rotateAlphabet(arrayList, rotateArraylist, key);
+        switch (mod)  {
             case 1:
-                System.out.println("key?");
-                int key = scanner.nextInt();
-                alphStrToMap(arrayList,ALPHABET);
-                rotateAlphabet(arrayList, rotateArraylist, key);
+
                 String res = encode(sourceList);
                 Files.writeString(PathBuilder.writePath("C:\\Pr\\1\\src.txt"),res);
                 break;
             case 2:
-                System.out.println("key?");
-                 key = scanner.nextInt();
-                alphStrToMap(arrayList,ALPHABET);
-                rotateAlphabet(arrayList, rotateArraylist, key);
+
+                res = decode(sourceList);
+                Files.writeString(PathBuilder.writePath("C:\\Pr\\1\\dest.txt"),res);
 
 
         }
@@ -63,5 +64,14 @@ public static String encode(String text){
     }
         return new String(arrayText);
     }
-
+public static String decode (String text){
+    char[]arrayText = text.toCharArray();
+    for (int i = 0; i <arrayText.length ; i++) {
+        if (rotateArraylist.contains(arrayText[i])){
+            arrayText[i]=arrayList.get(rotateArraylist.indexOf(arrayText[i]));
+        }
+    }
+    return new String(arrayText);
 }
+}
+
