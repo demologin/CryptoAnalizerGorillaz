@@ -1,6 +1,6 @@
 package com.javarush.siberia;
 
-import com.javarush.khmelov.exception.AppException;
+import com.javarush.siberia.exception.AppException;
 import com.javarush.siberia.controllers.MainController;
 import com.javarush.siberia.entity.Result;
 
