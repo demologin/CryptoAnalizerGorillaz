@@ -1,6 +1,7 @@
 package com.javarush.borisov.logic;
 
 
+
 import java.io.IOException;
 
 import java.nio.charset.Charset;
@@ -14,10 +15,7 @@ public  class Encrypt {
     private  final Path pathToFileToEncrypt;
     private final Path pathToEncryptedFile;
     private final int key;
-    private List<String> list;
-    private final char[] alphabet = {'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м',
-            'н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я'};
-    private final char[] simbols = {' ',',','.','/','?','<','>','"',':',';','+','-','='};
+
 
 
     public Encrypt(Path pathToFileToEncrypt, int key, Path pathToEncryptedFile) {
@@ -28,14 +26,12 @@ public  class Encrypt {
 
 
     }
-    public void runEncrypt(){
+    public void runEncrypt() throws IOException {
 
         System.out.println("Шифрация...");
-        try {
-           list  = Files.readAllLines(pathToFileToEncrypt);
-        } catch (IOException e) {
-            throw new RuntimeException("Файл не найден");
-        }
+
+        List<String> list = Files.readAllLines(pathToFileToEncrypt);
+
         for (int i = 0; i < list.size(); i++) {
             char[] tmp = list.get(i).toCharArray();
             for (int j = 0; j < tmp.length; j++) {
@@ -46,16 +42,13 @@ public  class Encrypt {
         }
         System.out.println(list);
 
-        try {
-            Files.writeString(pathToEncryptedFile,list.get(0), Charset.defaultCharset());
+
+            Files.writeString(pathToEncryptedFile, list.get(0), Charset.defaultCharset());
             for (int i = 1; i < list.size(); i++) {
 
-                Files.writeString(pathToEncryptedFile,"\n" +list.get(i), StandardOpenOption.APPEND);
+                Files.writeString(pathToEncryptedFile,"\n" + list.get(i), StandardOpenOption.APPEND);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+
 
         System.out.println("Файл зашифрован");
 

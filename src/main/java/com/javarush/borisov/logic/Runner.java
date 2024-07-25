@@ -1,28 +1,40 @@
 package com.javarush.borisov.logic;
 
 
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 
 public class Runner {
 
 
     public void run(MainMenu menu){
-        while(true) {
-            int choice = menu.getCommand();
-            switch (choice) {
-                case 1 -> {
+        int choice=0;
+        while(choice != 3) {
+            choice = menu.getCommand();
+            try {
+                switch (choice) {
+                    case 1 -> {
 
-                    Encrypt encrypt = new Encrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
+                        Encrypt encrypt = new Encrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
 
-                    encrypt.runEncrypt();
+                        encrypt.runEncrypt();
 
 
+                    }
+                    case 2 -> {
+                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
+                        decrypt.runDecrypt();
+                    }
+                    case 3 -> {
+
+                    }
                 }
-                case 2 -> {
-                    Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile() );
-                    decrypt.runDecrypt();
-                }
+            }catch (AccessDeniedException e){
+                System.out.println("\nне могу создать файл (отказано в доступе, давай по новой)\n");
+            }catch (IOException e){
+                System.out.println("\nфайл по указанному пути отсутсвует, давай по новой\n");
             }
-            break;
+
         }
     }
 }

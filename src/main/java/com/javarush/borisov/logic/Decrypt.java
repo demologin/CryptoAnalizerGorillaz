@@ -28,6 +28,8 @@ public class Decrypt {
             int length;
 
             while ((length = reader.read()) > 0) {
+
+
                 int a = decryptedMyChar(length);
                 outputStreamWriter.write(a);
 
@@ -40,19 +42,19 @@ public class Decrypt {
 
     private char decryptedMyChar(int c) {
 
-        if (findIndex((char) c,Const.alphabet)==-1){
+        if (findIndexEncChar((char) c,Const.alphabet)==-1){
             return (char) c;
-        }else {
-            int decryptedIndex = findIndex((char) c,Const.alphabet);
+        }
+        int decryptedIndex = findIndexEncChar((char) c,Const.alphabet);
             if (decryptedIndex - key <= 0) {
                decryptedIndex = Const.alphabet.length - 1 + (decryptedIndex - key);
                return Const.alphabet[decryptedIndex];
             }
 
-        }
-        return (char) c;
+
+        return Const.alphabet[decryptedIndex-key];
     }
-    private int findIndex(char ch, char[] arr){
+    private int findIndexEncChar(char ch, char[] arr){
         for (int i = 0; i < arr.length; i++) {
             if (arr[i]==ch){
                 return i;
