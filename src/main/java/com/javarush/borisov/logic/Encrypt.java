@@ -1,14 +1,14 @@
 package com.javarush.borisov.logic;
 
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+
+
+import java.nio.file.*;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class Encrypt {
     private final Path pathToFileToEncrypt;
@@ -25,27 +25,42 @@ public class Encrypt {
 
     }
 
-    public void runEncrypt() throws IOException {
+    public void runEncrypt() throws Exception {
 
         System.out.println(Messages.ENCODE);
-
-        List<String> list = Files.readAllLines(pathToFileToEncrypt);
-
-        for (int i = 0; i < list.size(); i++) {
-            char[] tmp = list.get(i).toCharArray();
-            for (int j = 0; j < tmp.length; j++) {
-                tmp[j] = alphabetNewChar(tmp[j], key);
-
-            }
-            list.set(i, String.valueOf(tmp));
-        }
+       try( BufferedReader reader = Files.newBufferedReader(pathToFileToEncrypt);
+        BufferedWriter writer = Files.newBufferedWriter(pathToEncryptedFile)) {
+           while (reader.ready()) {
 
 
-        Files.writeString(pathToEncryptedFile, list.get(0), Charset.defaultCharset());
-        for (int i = 1; i < list.size(); i++) {
+               String list = reader.readLine();
 
-            Files.writeString(pathToEncryptedFile, "\n" + list.get(i), StandardOpenOption.APPEND);
-        }
+               char[] tmp = list.toCharArray();
+               for (int j = 0; j < tmp.length; j++) {
+                   tmp[j] = alphabetNewChar(tmp[j], key);
+
+
+               }
+               writer.write(String.valueOf(tmp)+"\n");
+
+
+           }
+       }catch (AccessDeniedException e){
+
+           throw new AccessDeniedException("");
+       }catch (NoSuchFileException e){
+
+           throw new NoSuchFileException(pathToFileToEncrypt+"\n" + pathToEncryptedFile + Messages.FILE_NOT_FOUND);
+       }catch (Exception e){
+           System.out.println(Messages.UNKNOWN_ERROR);
+       }
+
+
+//        Files.writeString(pathToEncryptedFile, list.get(0), Charset.defaultCharset());
+//        for (int i = 1; i < list.size(); i++) {
+//
+//            Files.writeString(pathToEncryptedFile, "\n" + list.get(i), StandardOpenOption.APPEND);
+//        }
 
 
         System.out.println(Messages.ENCODE_FINISH);
@@ -54,7 +69,7 @@ public class Encrypt {
 
     private char alphabetNewChar(char tmp, int key) {
         int index = Arrays.binarySearch(Const.alphabet, tmp);
-        if (index == -1) {
+        if (index < 0) {
             return tmp;
         }
 

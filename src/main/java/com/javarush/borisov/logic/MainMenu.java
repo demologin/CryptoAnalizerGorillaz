@@ -22,6 +22,7 @@ public  class MainMenu {
                 choice = Integer.parseInt(scan.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Ведите число!");
+                continue;
             }
             break;
         }
@@ -29,16 +30,16 @@ public  class MainMenu {
 
     }
     public  Path getPathToGetFile(){
-        System.out.println("введите путь к файлу: ");
+        System.out.println(Messages.ENTER_PATH_TO_FILE);
         return Path.of(scan.nextLine());
     }
     public int getKey(){
-        System.out.println("введите фразу для шифра: ");
+        System.out.println(Messages.ENTER_KEY);
 
         return scan.nextLine().length();
     }
     public Path getPathToSaveFile(){
-        System.out.println("введите место сохранения файла ");
+        System.out.println(Messages.ENTER_PATH_TI_SAVE);
 
 
         return Path.of(scan.nextLine());

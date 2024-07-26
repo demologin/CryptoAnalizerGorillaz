@@ -10,6 +10,9 @@ public enum Messages {
     MENU_ENCODE ("1 - зашифровать"),
     MENU_DECODE ("2 - расшифровать"),
     WRONG_NUMBER ("Ну нет такого числа в меню, давай внимательнее..."),
+    ENTER_PATH_TO_FILE ("введите путь к файлу: "),
+    ENTER_KEY ("введите фразу для шифра: "),
+    ENTER_PATH_TI_SAVE ("введите место сохранения файла "),
     MENU_EXIT ("9 - выход");
 
     private final String title;

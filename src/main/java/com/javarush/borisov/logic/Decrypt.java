@@ -2,7 +2,7 @@ package com.javarush.borisov.logic;
 
 import java.io.*;
 
-import java.nio.file.AccessDeniedException;
+
 import java.nio.file.Path;
 
 
@@ -20,9 +20,7 @@ public class Decrypt {
     }
 
     public void runDecrypt() throws Exception {
-        if (!pathToDecryptedFile.toFile().canWrite()) {
-            throw new AccessDeniedException("");
-        }
+
         if (!pathToFileToDecrypt.toFile().exists()) {
             throw new FileNotFoundException();
         }
@@ -48,10 +46,10 @@ public class Decrypt {
 
     private char decryptedMyChar(int c) {
 
-        if (findIndexEncChar((char) c,Const.alphabet)==-1){
+        if (findIndexEncChar((char) c)==-1){
             return (char) c;
         }
-        int decryptedIndex = findIndexEncChar((char) c,Const.alphabet);
+        int decryptedIndex = findIndexEncChar((char) c);
             if (decryptedIndex - key <= 0) {
                decryptedIndex = Const.alphabet.length - 1 + (decryptedIndex - key);
                return Const.alphabet[decryptedIndex];
@@ -60,9 +58,9 @@ public class Decrypt {
 
         return Const.alphabet[decryptedIndex-key];
     }
-    private int findIndexEncChar(char ch, char[] arr){
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i]==ch){
+    private int findIndexEncChar(char ch){
+        for (int i = 0; i < Const.alphabet.length; i++) {
+            if (Const.alphabet[i]==ch){
                 return i;
             }
         }

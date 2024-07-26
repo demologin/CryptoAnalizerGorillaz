@@ -38,7 +38,9 @@ public class Runner {
 
                 System.out.println(Messages.FILE_NOT_FOUND);
             }catch (Exception e){
-                System.out.println(Messages.UNKNOWN_ERROR);
+
+                System.out.println(Messages.UNKNOWN_ERROR +
+                        e.getLocalizedMessage().substring(e.getLocalizedMessage().indexOf(':')+1));
             }
 
         }
