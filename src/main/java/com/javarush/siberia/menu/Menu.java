@@ -1,5 +1,6 @@
-package com.javarush.siberia;
+package com.javarush.siberia.menu;
 
+import com.javarush.siberia.Application;
 import com.javarush.siberia.constants.Constants;
 
 import java.util.Scanner;
@@ -20,10 +21,10 @@ public class Menu {
             switch (choice) {
                 case "1":
                     toEncode(scanner);
-                    return;
+                    break;
                 case "2":
                     toDecode(scanner);
-                    return;
+                    break;
                 case "3":
                     toBruteForce(scanner);
                     return;
