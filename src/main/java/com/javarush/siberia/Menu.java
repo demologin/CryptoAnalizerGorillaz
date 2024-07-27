@@ -20,28 +20,15 @@ public class Menu {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1":
-                    toEncode(scanner);
-                    break;
-
-                case "2":
-                    toDecode(scanner);
-                    break;
-
-                case "3":
-                    toBruteForce(scanner);
-                    break;
-
-                case "4":
-                    toAnalyse(scanner);
-                    break;
-
-                case "5":
+                case "1" -> toEncode(scanner);
+                case "2" -> toDecode(scanner);
+                case "3" -> toBruteForce(scanner);
+                case "4" -> toAnalyse(scanner);
+                case "5" -> {
                     System.out.println(Constants.EXIT_MESSAGE);
                     return;
-
-                default:
-                    System.out.println(Constants.INVALID_CHOICE);
+                }
+                default -> System.out.println(Constants.INVALID_CHOICE);
             }
         }
     }
