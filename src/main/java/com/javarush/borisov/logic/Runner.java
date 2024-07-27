@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import java.nio.file.AccessDeniedException;
 
+
 public class Runner {
 
 
@@ -26,6 +27,10 @@ public class Runner {
                         Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
                         decrypt.runDecrypt();
                     }
+                    case 3 ->{
+                        ButForce butForce = new ButForce(menu.getPathToGetFile(), menu.getPathToSaveFile());
+                        butForce.runBF();
+                    }
                     case 9 -> {break;}
 
                     default -> System.out.println(Messages.WRONG_NUMBER);
@@ -37,7 +42,7 @@ public class Runner {
             }catch (FileNotFoundException e){
 
                 System.out.println(Messages.FILE_NOT_FOUND);
-            }catch (Exception e){
+            }catch (RuntimeException e){
 
                 System.out.println(Messages.UNKNOWN_ERROR +
                         e.getLocalizedMessage().substring(e.getLocalizedMessage().indexOf(':')+1));

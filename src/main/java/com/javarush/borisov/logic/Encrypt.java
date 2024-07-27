@@ -5,9 +5,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 
-
+import java.io.FileNotFoundException;
 import java.nio.file.*;
-import java.util.Arrays;
 
 
 public class Encrypt {
@@ -25,7 +24,7 @@ public class Encrypt {
 
     }
 
-    public void runEncrypt() throws Exception {
+    public void runEncrypt() throws RuntimeException, AccessDeniedException, FileNotFoundException {
 
         System.out.println(Messages.ENCODE);
        try( BufferedReader reader = Files.newBufferedReader(pathToFileToEncrypt);
@@ -50,9 +49,9 @@ public class Encrypt {
            throw new AccessDeniedException("");
        }catch (NoSuchFileException e){
 
-           throw new NoSuchFileException(pathToFileToEncrypt+"\n" + pathToEncryptedFile + Messages.FILE_NOT_FOUND);
+           throw new FileNotFoundException(pathToFileToEncrypt+"\n" + pathToEncryptedFile + Messages.FILE_NOT_FOUND);
        }catch (Exception e){
-           System.out.println(Messages.UNKNOWN_ERROR);
+           System.out.println(Messages.UNKNOWN_ERROR +e.getMessage());
        }
 
 
@@ -68,15 +67,28 @@ public class Encrypt {
     }
 
     private char alphabetNewChar(char tmp, int key) {
-        int index = Arrays.binarySearch(Const.alphabet, tmp);
+
+        int index =-1;
+        for (int i = 0; i < Const.alphabet.length; i++) {
+            if (tmp == Const.alphabet[i]) {
+                index = i;
+            }
+        }
+
+
         if (index < 0) {
             return tmp;
         }
 
-        if (index + key >= Const.alphabet.length) {
-            int temp = Const.alphabet.length - 1 - index;
+        if (index + key > Const.alphabet.length) {
+            int keyTemp = key - (Const.alphabet.length  - index);
 
-            return Const.alphabet[temp];
+            return Const.alphabet[keyTemp];
+        }
+        if (index + key == Const.alphabet.length) {
+
+
+            return Const.alphabet[0];
         }
         return Const.alphabet[index + key];
     }

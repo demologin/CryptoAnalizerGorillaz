@@ -19,7 +19,7 @@ public class Decrypt {
 
     }
 
-    public void runDecrypt() throws Exception {
+    public void runDecrypt() throws FileNotFoundException,RuntimeException {
 
         if (!pathToFileToDecrypt.toFile().exists()) {
             throw new FileNotFoundException();
@@ -40,7 +40,7 @@ public class Decrypt {
 
             }
         }catch (Exception e) {
-            throw new Exception(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -50,10 +50,13 @@ public class Decrypt {
             return (char) c;
         }
         int decryptedIndex = findIndexEncChar((char) c);
-            if (decryptedIndex - key <= 0) {
-               decryptedIndex = Const.alphabet.length - 1 + (decryptedIndex - key);
+            if (decryptedIndex - key < 0) {
+               decryptedIndex = Const.alphabet.length  + (decryptedIndex - key);
                return Const.alphabet[decryptedIndex];
-            }
+            }if (decryptedIndex - key == 0) {
+
+            return Const.alphabet[0];
+        }
 
 
         return Const.alphabet[decryptedIndex-key];
