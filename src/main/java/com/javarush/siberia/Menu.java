@@ -15,7 +15,7 @@ public class Menu {
     public void showMenu() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print(Constants.MENU);
+            System.out.print(Constants.MENU_TXT);
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -31,29 +31,29 @@ public class Menu {
                     toAnalyse(scanner);
                     return;
                 case "5":
-                    System.out.println(Constants.EXIT_MESSAGE);
+                    System.out.println(Constants.EXIT_TXT);
                     return;
                 default:
-                    System.out.println(Constants.INVALID_CHOICE);
+                    System.out.println(Constants.INVALID_CHOICE_TXT);
                     break;
             }
         }
     }
 
     private void toEncode(Scanner scanner) {
-        System.out.print(Constants.ENCODE);
+        System.out.print(Constants.ENCODE_TXT);
         String encodeInputPath = scanner.nextLine().trim();
         if (encodeInputPath.isEmpty()) {
             encodeInputPath = Constants.INPUT_FILE;
         }
 
-        System.out.print(Constants.OUTPUT);
+        System.out.print(Constants.OUTPUT_TXT);
         String encodeOutputPath = scanner.nextLine().trim();
         if (encodeOutputPath.isEmpty()) {
             encodeOutputPath = Constants.ENCODED_FILE;
         }
 
-        System.out.print(Constants.KEY);
+        System.out.print(Constants.KEY_TXT);
         String encodeKeyInput = scanner.nextLine().trim();
         int encodeKey = encodeKeyInput.isEmpty()
                 ? Constants.DEFAULT_SHIFT
@@ -65,19 +65,19 @@ public class Menu {
     }
 
     private void toDecode(Scanner scanner) {
-        System.out.print(Constants.DECODE);
+        System.out.print(Constants.DECODE_TXT);
         String decodeInputPath = scanner.nextLine().trim();
         if (decodeInputPath.isEmpty()) {
             decodeInputPath = Constants.ENCODED_FILE;
         }
 
-        System.out.print(Constants.OUTPUT);
+        System.out.print(Constants.OUTPUT_TXT);
         String decodeOutputPath = scanner.nextLine().trim();
         if (decodeOutputPath.isEmpty()) {
             decodeOutputPath = Constants.DECODED_FILE;
         }
 
-        System.out.print(Constants.KEY);
+        System.out.print(Constants.KEY_TXT);
         String decodeKeyInput = scanner.nextLine().trim();
         int decodeKey = decodeKeyInput.isEmpty()
                 ? Constants.DEFAULT_SHIFT
