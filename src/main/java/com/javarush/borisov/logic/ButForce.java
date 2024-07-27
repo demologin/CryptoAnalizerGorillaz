@@ -8,33 +8,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ButForce {
-    private final Path pathToFileToDecrypt;
+    private final Path pathToEncryptedFile;
     private final Path pathToDecryptedFile;
 
 
     public ButForce(Path pathToEncryptedFile, Path pathToDecryptedFile) {
-        this.pathToFileToDecrypt = pathToEncryptedFile;
+        this.pathToEncryptedFile = pathToEncryptedFile;
         this.pathToDecryptedFile = pathToDecryptedFile;
 
     }
 
 
         public    void runBF() throws FileNotFoundException{
-        try (BufferedReader reader = Files.newBufferedReader(pathToFileToDecrypt)){
+        try (BufferedReader reader = Files.newBufferedReader(pathToEncryptedFile)){
             int count =20;
             String lines="";
             while (reader.ready()) {
                  lines = lines + reader.readLine() + "\n";
                 if(count==0){
                     int key = findKey(findFrequentChar(lines));
-                    Decrypt decryptBF = new Decrypt(pathToFileToDecrypt, key,pathToDecryptedFile);
+                    Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile);
                     decryptBF.runDecrypt();
                 }
                 count--;
             }
             if(count >0) {
                 int key = findKey(findFrequentChar(lines));
-                Decrypt decryptBF = new Decrypt(pathToFileToDecrypt, key,pathToDecryptedFile);
+                Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile);
                 decryptBF.runDecrypt();
             }
 

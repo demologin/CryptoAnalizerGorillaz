@@ -3,6 +3,7 @@ package com.javarush.borisov.logic;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+
 public  class MainMenu {
 
     private final Scanner  scan;
@@ -19,8 +20,10 @@ public  class MainMenu {
         System.out.println(Messages.MENU_EXIT);
         int choice;
         while(true) {
+            String entry = scan.nextLine();
+
             try {
-                choice = Integer.parseInt(scan.nextLine());
+                choice = Integer.parseInt(entry);
             } catch (NumberFormatException e) {
                 System.out.println("Ведите число!");
                 continue;
@@ -32,8 +35,30 @@ public  class MainMenu {
     }
     public  Path getPathToGetFile(){
         System.out.println(Messages.ENTER_PATH_TO_FILE);
-        return Path.of(scan.nextLine());
+        String path = scan.nextLine();
+        if (path.isEmpty()){
+            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+            tmp = tmp.relativize(Path.of("borisov/files/text.txt")).toAbsolutePath().normalize();
+            return tmp;
+
+        }
+
+        return Path.of(path);
     }
+
+    public  Path getPathToGetFile(int a){
+        System.out.println(Messages.ENTER_PATH_TO_FILE);
+        String path = scan.nextLine();
+        if (path.isEmpty()){
+            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+            tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
+            return tmp;
+
+        }
+
+        return Path.of(path);
+    }
+
     public int getKey(){
         System.out.println(Messages.ENTER_KEY);
         String line = scan.nextLine();
@@ -44,10 +69,30 @@ public  class MainMenu {
         }
     }
     public Path getPathToSaveFile(){
-        System.out.println(Messages.ENTER_PATH_TI_SAVE);
+        System.out.println(Messages.ENTER_PATH_TO_SAVE);
+        String path = scan.nextLine();
+        if (path.isEmpty()){
+            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+            tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
+            return tmp;
+
+        }
 
 
-        return Path.of(scan.nextLine());
+        return Path.of(path);
+    }
+    public Path getPathToSaveFile(int a){
+        System.out.println(Messages.ENTER_PATH_TO_SAVE);
+        String path = scan.nextLine();
+        if (path.isEmpty()){
+            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+            tmp = tmp.relativize(Path.of("borisov/files/decrypted.txt")).toAbsolutePath().normalize();
+            return tmp;
+
+        }
+
+
+        return Path.of(path);
     }
 
 

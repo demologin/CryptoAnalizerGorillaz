@@ -16,19 +16,15 @@ public class Runner {
             try {
                 switch (choice) {
                     case 1 -> {
-
                         Encrypt encrypt = new Encrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
-
                         encrypt.runEncrypt();
-
-
                     }
                     case 2 -> {
-                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
+                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(), menu.getPathToSaveFile(1));
                         decrypt.runDecrypt();
                     }
                     case 3 ->{
-                        ButForce butForce = new ButForce(menu.getPathToGetFile(), menu.getPathToSaveFile());
+                        ButForce butForce = new ButForce(menu.getPathToGetFile(1), menu.getPathToSaveFile(1));
                         butForce.runBF();
                     }
                     case 9 -> {break;}
