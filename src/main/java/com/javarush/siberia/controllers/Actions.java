@@ -1,13 +1,13 @@
 package com.javarush.siberia.controllers;
 
 import com.javarush.khmelov.exception.AppException;
-import com.javarush.siberia.commands.Action;
-import com.javarush.siberia.commands.Decoder;
-import com.javarush.siberia.commands.Encoder;
+import com.javarush.siberia.commands.*;
 
 public enum Actions {
     ENCODE(new Encoder()),
-    DECODE(new Decoder());
+    DECODE(new Decoder()),
+    BRUTEFORCE(new BruteForce()),
+    ANALYSIS(new Analysis());
 
     private final Action action;
 

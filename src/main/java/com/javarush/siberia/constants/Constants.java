@@ -17,7 +17,7 @@ public class Constants {
     public static final String DECODED_FILE = TXT_FOLDER + "decoded.txt";
     public static final int DEFAULT_SHIFT = 3;
 
-    public static final String MENU = "Выберите действие:\n1. Шифровать\n2. Дешифровать\n3. Выйти.\nВведите выбранный пункт меню: ";
+    public static final String MENU = "Выберите действие:\n1. Шифровать\n2. Дешифровать\n3. Взлом.\n4. Анализ.\n5. Выйти.\nВведите выбранный пункт меню: ";
     public static final String ENCODE = "Введите путь к файлу для шифрования (или нажмите Enter для пути по умолчанию): ";
     public static final String DECODE = "Введите путь к файлу для дешифрования (или нажмите Enter для пути по умолчанию): ";
     public static final String OUTPUT = "Введите путь для сохранения результата (или нажмите Enter для использования пути по умолчанию): ";

@@ -1,7 +1,6 @@
 package com.javarush.siberia;
 
 import com.javarush.siberia.constants.Constants;
-import com.javarush.siberia.entity.Result;
 
 import java.util.Scanner;
 
@@ -17,9 +16,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print(Constants.MENU);
-
             String choice = scanner.nextLine();
-
             switch (choice) {
                 case "1":
                     toEncode(scanner);
@@ -64,20 +61,38 @@ public class Menu {
 
         String[] encodeArgs = {"encode", String.valueOf(encodeKey), encodeInputPath, encodeOutputPath};
         application.run(encodeArgs);
-        System.out.println("Шифрование завершено");
+        System.out.println("Шифрование завершено.");
     }
 
     private void toDecode(Scanner scanner) {
+        System.out.print(Constants.DECODE);
+        String decodeInputPath = scanner.nextLine().trim();
+        if (decodeInputPath.isEmpty()) {
+            decodeInputPath = Constants.ENCODED_FILE;
+        }
 
+        System.out.print(Constants.OUTPUT);
+        String decodeOutputPath = scanner.nextLine().trim();
+        if (decodeOutputPath.isEmpty()) {
+            decodeOutputPath = Constants.DECODED_FILE;
+        }
+
+        System.out.print(Constants.KEY);
+        String decodeKeyInput = scanner.nextLine().trim();
+        int decodeKey = decodeKeyInput.isEmpty()
+                ? Constants.DEFAULT_SHIFT
+                : Integer.parseInt(decodeKeyInput);
+
+        String[] decodeArgs = {"decode", String.valueOf(decodeKey), decodeInputPath, decodeOutputPath};
+        application.run(decodeArgs);
+        System.out.println("Дешифрование завершено.");
     }
 
     private void toBruteForce(Scanner scanner) {
-
+        System.out.println("В разработке... Ожидайте новых обновлений.");
     }
 
     private void toAnalyse(Scanner scanner) {
-
+        System.out.println("В разработке... Ожидайте новых обновлений.");
     }
-
-
 }
