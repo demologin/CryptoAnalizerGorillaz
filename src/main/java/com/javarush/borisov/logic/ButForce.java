@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ButForce {
+public class ButForce extends FindFreqChar {
     private final Path pathToEncryptedFile;
     private final Path pathToDecryptedFile;
 
@@ -21,20 +21,20 @@ public class ButForce {
 
         public    void runBF() throws FileNotFoundException{
         try (BufferedReader reader = Files.newBufferedReader(pathToEncryptedFile)){
-            int count =20;
+            int count =200;
             String lines="";
             while (reader.ready()) {
                  lines = lines + reader.readLine() + "\n";
                 if(count==0){
                     int key = findKey(findFrequentChar(lines));
-                    Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile);
+                    Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile,Const.ALPHABET);
                     decryptBF.runDecrypt();
                 }
                 count--;
             }
             if(count >0) {
                 int key = findKey(findFrequentChar(lines));
-                Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile);
+                Decrypt decryptBF = new Decrypt(pathToEncryptedFile, key,pathToDecryptedFile,Const.ALPHABET);
                 decryptBF.runDecrypt();
             }
 
@@ -50,47 +50,25 @@ public class ButForce {
 
 
     }
-    private static char findFrequentChar(String line)  {
-        Map<Character,Integer> chars = new HashMap<>();
 
-        for (int i = 0; i < line.length(); i++) {
-            if(chars.containsKey(line.charAt(i))) {
-
-                chars.put(line.charAt(i), chars.get(line.charAt(i)) + 1);
-            }else chars.put(line.charAt(i), 1);
-
-        }
-        int maxValue = Integer.MIN_VALUE; // Начальное значение
-        char key=0;
-        for (Map.Entry entry : chars.entrySet()) {
-            if (Integer.parseInt(entry.getValue().toString()) > maxValue) {
-                maxValue = Integer.parseInt(entry.getValue().toString());
-                key = entry.getKey().toString().charAt(0);
-                
-            }
-        }
-
-        return key;
-
-    }
     private static int findKey(char symbol){
             int indexOfEncryptedSpase=0;
             int indexOfRealSpase=0;
             int key;
-        for (int i = 0; i < Const.alphabet.length; i++) {
-            if(symbol==Const.alphabet[i]){
+        for (int i = 0; i < Const.ALPHABET.length; i++) {
+            if(symbol==Const.ALPHABET[i]){
                 indexOfEncryptedSpase =i;
             }
-            if(Const.alphabet[i]==' '){
+            if(Const.ALPHABET[i]==' '){
                 indexOfRealSpase=i;
             }
         }
         if(indexOfEncryptedSpase - indexOfRealSpase>0){
             key=indexOfEncryptedSpase - indexOfRealSpase;
         }else {
-            key = Const.alphabet.length - indexOfRealSpase + indexOfEncryptedSpase;
+            key = Const.ALPHABET.length - indexOfRealSpase + indexOfEncryptedSpase;
         }
-        if(key != Const.alphabet.length) {
+        if(key != Const.ALPHABET.length) {
             System.out.println(Messages.KEY_GRANTED + "" + key);
         }else {
             System.out.println(Messages.KEY_IS_NULL);

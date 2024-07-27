@@ -10,12 +10,14 @@ public class Decrypt {
     private final Path pathToFileToDecrypt;
     private final Path pathToDecryptedFile;
     private final int key;
+    private char[] alphabet;
 
 
-    public Decrypt(Path pathToFileToDecrypt, int key, Path pathToDecryptedFile) {
+    public Decrypt(Path pathToFileToDecrypt, int key, Path pathToDecryptedFile, char[] alphabet) {
         this.pathToFileToDecrypt = pathToFileToDecrypt;
         this.pathToDecryptedFile = pathToDecryptedFile;
         this.key = key;
+        this.alphabet = alphabet;
 
     }
 
@@ -51,19 +53,19 @@ public class Decrypt {
         }
         int decryptedIndex = findIndexEncChar((char) c);
             if (decryptedIndex - key < 0) {
-               decryptedIndex = Const.alphabet.length  + (decryptedIndex - key);
-               return Const.alphabet[decryptedIndex];
+               decryptedIndex = alphabet.length  + (decryptedIndex - key);
+               return alphabet[decryptedIndex];
             }if (decryptedIndex - key == 0) {
 
-            return Const.alphabet[0];
+            return alphabet[0];
         }
 
 
-        return Const.alphabet[decryptedIndex-key];
+        return alphabet[decryptedIndex-key];
     }
     private int findIndexEncChar(char ch){
-        for (int i = 0; i < Const.alphabet.length; i++) {
-            if (Const.alphabet[i]==ch){
+        for (int i = 0; i < alphabet.length; i++) {
+            if (alphabet[i]==ch){
                 return i;
             }
         }

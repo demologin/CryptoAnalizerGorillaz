@@ -69,8 +69,8 @@ public class Encrypt {
     private char alphabetNewChar(char tmp, int key) {
 
         int index =-1;
-        for (int i = 0; i < Const.alphabet.length; i++) {
-            if (tmp == Const.alphabet[i]) {
+        for (int i = 0; i < Const.ALPHABET.length; i++) {
+            if (tmp == Const.ALPHABET[i]) {
                 index = i;
             }
         }
@@ -80,17 +80,17 @@ public class Encrypt {
             return tmp;
         }
 
-        if (index + key > Const.alphabet.length) {
-            int keyTemp = key - (Const.alphabet.length  - index);
+        if (index + key > Const.ALPHABET.length) {
+            int keyTemp = key - (Const.ALPHABET.length  - index);
 
-            return Const.alphabet[keyTemp];
+            return Const.ALPHABET[keyTemp];
         }
-        if (index + key == Const.alphabet.length) {
+        if (index + key == Const.ALPHABET.length) {
 
 
-            return Const.alphabet[0];
+            return Const.ALPHABET[0];
         }
-        return Const.alphabet[index + key];
+        return Const.ALPHABET[index + key];
     }
 
 

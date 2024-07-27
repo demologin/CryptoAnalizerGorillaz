@@ -20,7 +20,7 @@ public class Runner {
                         encrypt.runEncrypt();
                     }
                     case 2 -> {
-                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(), menu.getPathToSaveFile(1));
+                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(), menu.getPathToSaveFile(1),Const.ALPHABET);
                         decrypt.runDecrypt();
                     }
                     case 3 ->{
