@@ -12,15 +12,12 @@ import java.io.IOException;
 
 public class Encoder implements Action{
 
-    private static final String INPUT_FILE = Constants.TXT_FOLDER + "text.txt";
-    private static final String OUTPUT_FILE = Constants.TXT_FOLDER + "encoded.txt";
     private final CaesarCipher cipher = new CaesarCipher();
-    private static final int DEFAULT_SHIFT = 3;
 
     @Override
     public Result execute(String[] parameters) {
 
-        int shift = DEFAULT_SHIFT;
+        int shift = Constants.DEFAULT_SHIFT;
 
         if (parameters.length > 0) {
             try {
@@ -32,7 +29,7 @@ public class Encoder implements Action{
 
         String text;
         try {
-            text = readFile(INPUT_FILE);
+            text = readFile(Constants.INPUT_FILE);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
@@ -40,7 +37,7 @@ public class Encoder implements Action{
         String encryptedText = cipher.encrypt(text, shift);
 
         try {
-            writeFile(OUTPUT_FILE, encryptedText);
+            writeFile(Constants.ENCODED_FILE, encryptedText);
         } catch (IOException e) {
             return new Result("Ошибка записи в файл", ResultCode.ERROR  );
         }
@@ -55,7 +52,7 @@ public class Encoder implements Action{
                 text.append(line).append(System.lineSeparator());
             }
         }
-        return text.toString();
+        return text.toString().trim();
     }
 
     private void writeFile(String fileName, String content) throws IOException {

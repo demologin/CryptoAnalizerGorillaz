@@ -11,4 +11,9 @@ public class Constants {
     public static final String ALPHABET = rus + rus.toLowerCase() + eng + eng.toLowerCase() + num + cym;
 
     public static final String TXT_FOLDER = System.getProperty("user.dir") + File.separator + "text" + File.separator;
+
+    public static final String INPUT_FILE = TXT_FOLDER + "text.txt";
+    public static final String ENCODED_FILE = TXT_FOLDER + "encoded.txt";
+    public static final String DECODED_FILE = TXT_FOLDER + "decoded.txt";
+    public static final int DEFAULT_SHIFT = 3;
 }
