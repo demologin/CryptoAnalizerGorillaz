@@ -15,10 +15,21 @@ public class Controller {
     public void doAction() throws IOException {
         String result;
         String[] analyze = new String[2];
-        ConsoleManager consoleManager = new ConsoleManager();
-        FileManager fileManager = new FileManager();
-        String[] parametrs = consoleManager.readConsole();
-        String fileText = fileManager.readFile(parametrs[1]);
+        boolean test = false;
+        String[] parametrs = new String[3];
+        String fileText = null;
+        while (!test) {
+            try {
+                ConsoleManager consoleManager = new ConsoleManager();
+                FileManager fileManager = new FileManager();
+                parametrs = consoleManager.readConsole();
+                fileText = fileManager.readFile(parametrs[1]);
+
+                test = true;
+            }catch (Exception e){
+                System.out.println("test"+""+ e);
+            }
+            }
         switch (Integer.parseInt(parametrs[0])) {
             case 1:
                 result = Encode.execute(fileText, Integer.parseInt(parametrs[2]));
@@ -37,28 +48,8 @@ public class Controller {
                 Files.writeString(PathBuilder.writePath("D:\\java\\Pr\\rasskaz\\decode.txt"), result);
                 System.out.println(analyze[1]);
                 break;
+
         }
-    }
-
-
-//    alphStrToMap(characterArrayList, ALPHABET);
-//    rotateAlphabet(characterArrayList, rotateArraylist, key);
-
-
-
-
-    public static void alphStrToMap(ArrayList list, String alpabet) {
-
-        char[] arrChar = alpabet.toCharArray();
-        for (int i = 0; i < arrChar.length; i++) {
-            list.add(arrChar[i]);
-        }
-    }
-    public static ArrayList rotateAlphabet(ArrayList alphList, ArrayList rotateArraylist, int key) {
-
-        rotateArraylist.addAll(alphList);
-        Collections.rotate(rotateArraylist, key);
-        return rotateArraylist;
 
     }
 }
