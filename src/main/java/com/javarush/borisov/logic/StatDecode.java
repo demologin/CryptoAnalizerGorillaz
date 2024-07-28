@@ -25,8 +25,9 @@ public class StatDecode extends Reader {
         line = Reader.read(tempFile);
         addToNewAlphabet(findFrequentDoubleChar(line, ' '), 'о');// вычислили 'о' ??? добавляем в новый алфавит
         line = "";
-
-        //decrypt(decryptedFile, tempFile);
+        decrypt(tempFile,decryptedFile);
+        line = Reader.read(decryptedFile);
+        addToNewAlphabet(findFrequentDoubleChar(line, 'о'), 'в');// вычислили 'в' ??? добавляем в новый алфавит
 
         System.out.println(newAlphabet);
 

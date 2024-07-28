@@ -35,17 +35,24 @@ public class FindFreqChar {
     public static char findFrequentDoubleChar(String line, char knownChar) {
         Map<String, Integer> doubleChar = new HashMap<>();
         for (int i = 0; i < line.length()-1; i++) {
+            doubleChar.put(line.charAt(i) + "" + line.charAt(i+1),1);
 
+        }
+        for (int i = 0; i < line.length(); i++) {
             if (doubleChar.containsKey(line.charAt(i) +""+ knownChar)) {
 
                 doubleChar.put(((line.charAt(i) +"" + knownChar)), doubleChar.get((line.charAt(i) +"" + knownChar)) + 1);
-            }else {
-                doubleChar.put(line.charAt(i)+""+knownChar,1);
             }
         }
+
+
+
+
         int maxValue = Integer.MIN_VALUE; // Начальное значение
         String key = "";
         for (Map.Entry entry : doubleChar.entrySet()) {
+
+
             if (Integer.parseInt(entry.getValue().toString()) > maxValue) {
                 maxValue = Integer.parseInt(entry.getValue().toString());
                 key = entry.getKey().toString();
@@ -57,7 +64,7 @@ public class FindFreqChar {
         System.out.println("пара = |" + key + "|" + " частота встречи = |" + maxValue + "|");
 
 
-        System.out.println(doubleChar);
+        //System.out.println(doubleChar);
         return key.charAt(0);
     }
 
