@@ -6,26 +6,30 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatDecode extends FindFreqChar {
+public class StatDecode extends Reader {
     private static Map<Character, Character> newAlphabet = new HashMap<>();
-     private static final Path EncryptedFile = Path.of("c:\\111\\111.txt");
-   // private static final Path EncryptedFile = Path.of("c:\\111\\encrypt.txt");
-    private static final Path DecryptedFile = Path.of("c:\\111\\decrypt.txt");
+    //  private static final Path encryptedFile = Path.of("c:\\111\\111.txt");
+    private static Path encryptedFile = Path.of("c:\\111\\encrypt.txt");
+    private static Path decryptedFile = Path.of("c:\\111\\decrypt.txt");
+    private static Path tempFile = Path.of("c:\\111\\temp.txt");
     private static String line = "";
+    private static int count = 1000;
 
     //    public void runStatDecode(){
     public static void main(String[] args) {
-        try (BufferedReader reader = Files.newBufferedReader(EncryptedFile)) {
-            while (reader.ready()) {
-                line = line + reader.readLine() + "\n";
-            }
-            System.out.println("|" + findFrequentChar(line) + "|");
-            addToNewAlphabet(findFrequentChar(line), ' ');// вычисляем пробелы и добавляем в новый алфавит
-            decrypt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        findFrequentDoubleChar(line,' ');
+        Reader.changeSimbol(encryptedFile,  tempFile, " " , "^!?^"); // заменяем то что сейчас является пробелом
+        line = Reader.read(tempFile);
+        addToNewAlphabet(findFrequentChar(line), ' ');// вычисляем пробелы и добавляем в новый алфавит
+        decrypt(tempFile, decryptedFile);
+        Reader.changeSimbol(decryptedFile, tempFile, "  " , " ");
+        line = Reader.read(tempFile);
+        addToNewAlphabet(findFrequentDoubleChar(line, ' '), 'о');// вычислили 'о' ??? добавляем в новый алфавит
+        line = "";
+
+        //decrypt(decryptedFile, tempFile);
+
+        System.out.println(newAlphabet);
+
 
     }
 
@@ -42,27 +46,35 @@ public class StatDecode extends FindFreqChar {
         }
         return al;
     }
-    private static void decrypt (){
-        try (InputStream inputStream = new FileInputStream(EncryptedFile.toFile());
-             InputStreamReader reader = new InputStreamReader(inputStream);
-             OutputStream outputStream = new FileOutputStream(DecryptedFile.toFile());
-             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream)) {
+
+    private static void decrypt(Path pathToRead, Path pathToSave) {
+
+        try (BufferedReader reader = Files.newBufferedReader(pathToRead);
+             BufferedWriter writer = Files.newBufferedWriter(pathToSave)) {
 
 
-            int c;
-
-            while ((c = reader.read()) > 0) {
-
-                if (newAlphabet.containsKey((char)c)){
-                    outputStreamWriter.write(newAlphabet.get((char)c));
-                }else {
-
-
-                    outputStreamWriter.write(c);
+            while (reader.ready()) {
+                String list = reader.readLine();
+                if (list.equals("")) {
+                    continue;
                 }
+                char[] tmp = list.toCharArray();
+                for (int j = 0; j < tmp.length; j++) {
 
+                    if (newAlphabet.containsKey(tmp[j])) {
+                        tmp[j] = newAlphabet.get(tmp[j]);
+                    }
+
+                }
+                if (count != 1) {
+                    writer.write((String.valueOf(tmp)).replaceAll("  ", " ") + "\n");
+                } else {
+                    writer.write((String.valueOf(tmp)).replaceAll("  ", " ") + "\n");
+                }
             }
-        }catch (Exception e) {
+            count = 0;
+
+        } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }

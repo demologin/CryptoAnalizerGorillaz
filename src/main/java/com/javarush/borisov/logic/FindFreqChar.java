@@ -27,18 +27,21 @@ public class FindFreqChar {
 
             }
         }
-        // System.out.println(chars);
+        System.out.println("чар: |" + key + "| частота встречи " + maxValue);
         return key;
 
     }
 
     public static char findFrequentDoubleChar(String line, char knownChar) {
-        Map<String, Integer> doubleChar = new TreeMap<>();
+        Map<String, Integer> doubleChar = new HashMap<>();
         for (int i = 0; i < line.length()-1; i++) {
-            if (doubleChar.containsKey((line.charAt(i) +""+ knownChar))) {
 
-                doubleChar.put(((line.charAt(i) + "" + knownChar)), doubleChar.get((line.charAt(i) + "" + knownChar)) + 1);
-            }else doubleChar.put((line.charAt(i) + "" + knownChar), 1);
+            if (doubleChar.containsKey(line.charAt(i) +""+ knownChar)) {
+
+                doubleChar.put(((line.charAt(i) +"" + knownChar)), doubleChar.get((line.charAt(i) +"" + knownChar)) + 1);
+            }else {
+                doubleChar.put(line.charAt(i)+""+knownChar,1);
+            }
         }
         int maxValue = Integer.MIN_VALUE; // Начальное значение
         String key = "";
@@ -51,11 +54,11 @@ public class FindFreqChar {
 
 
         }
-        System.out.println("пара = |" + key + "|");
+        System.out.println("пара = |" + key + "|" + " частота встречи = |" + maxValue + "|");
 
 
         System.out.println(doubleChar);
-        return ' ';
+        return key.charAt(0);
     }
 
 }
