@@ -5,10 +5,9 @@ import com.javarush.siberia.constants.Constants;
 import com.javarush.siberia.entity.Result;
 import com.javarush.siberia.entity.ResultCode;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Decoder implements Action{
 
@@ -27,14 +26,14 @@ public class Decoder implements Action{
             }
         }
 
-        String text;
+        char[] text;
         try {
             text = readFile(Constants.ENCODED_FILE);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
 
-        String decryptedText = cipher.decrypt(text, shift);
+        char[] decryptedText = cipher.decrypt(text, shift);
 
         try {
             writeFile(Constants.DECODED_FILE, decryptedText);
@@ -42,23 +41,14 @@ public class Decoder implements Action{
             return new Result("Не могу записать в файл", ResultCode.ERROR);
         }
 
-        return new Result(decryptedText, ResultCode.OK);
+        return new Result(new String(decryptedText), ResultCode.OK);
     }
 
-    private String readFile(String fileName) throws IOException {
-        StringBuilder text = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader((new FileReader(fileName)))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                text.append(line).append(System.lineSeparator());
-            }
-        }
-        return text.toString().trim();
+    private char[] readFile(String fileName) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(fileName))).toCharArray();
     }
 
-    private void writeFile(String fileName, String content) throws IOException {
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write(content);
-        }
+    private void writeFile(String fileName, char[] content) throws IOException {
+        Files.write(Paths.get(fileName), new String(content).getBytes());
     }
 }

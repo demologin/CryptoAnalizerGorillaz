@@ -9,6 +9,7 @@ public class Constants {
     private static final String cym = "!@#$%^&*()_+-=*/.,<>[]{};:'\" `~";
 
     public static final String ALPHABET = rus + rus.toLowerCase() + eng + eng.toLowerCase() + num + cym;
+    public static final String ALPHABET_LENGTH_TXT = "Текущая длина алфавита: " + ALPHABET.length() + " символов.";
 
     public static final String DEFAULT_FOLDER = System.getProperty("user.dir") + File.separator + "text" + File.separator;
 
