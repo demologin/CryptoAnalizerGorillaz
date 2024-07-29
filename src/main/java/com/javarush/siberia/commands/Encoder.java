@@ -4,11 +4,10 @@ import com.javarush.siberia.cipher.CaesarCipher;
 import com.javarush.siberia.constants.Constants;
 import com.javarush.siberia.entity.Result;
 import com.javarush.siberia.entity.ResultCode;
+import com.javarush.siberia.utils.FileReadWrite;
 
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Encoder implements Action{
 
@@ -29,7 +28,7 @@ public class Encoder implements Action{
 
         char[] text;
         try {
-            text = readFile(Constants.INPUT_FILE);
+            text = FileReadWrite.readFile(Constants.INPUT_FILE);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
@@ -37,18 +36,10 @@ public class Encoder implements Action{
         char[] encryptedText = cipher.encrypt(text, shift);
 
         try {
-            writeFile(Constants.ENCODED_FILE, encryptedText);
+            FileReadWrite.writeFile(Constants.ENCODED_FILE, encryptedText);
         } catch (IOException e) {
             return new Result("Ошибка записи в файл", ResultCode.ERROR  );
         }
         return new Result(new String(encryptedText), ResultCode.OK);
-    }
-
-    private char[] readFile(String fileName) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(fileName))).toCharArray();
-    }
-
-    private void writeFile(String fileName, char[] content) throws IOException {
-        Files.write(Paths.get(fileName), new String(content).getBytes());
     }
 }
