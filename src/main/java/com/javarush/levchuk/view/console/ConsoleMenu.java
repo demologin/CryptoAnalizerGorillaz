@@ -3,7 +3,9 @@ package com.javarush.levchuk.view.console;
 import com.javarush.levchuk.controller.Controller;
 import com.javarush.levchuk.exceptions.CustomException;
 import com.javarush.levchuk.view.ProgramMessages;
+
 import java.util.Scanner;
+
 import static com.javarush.levchuk.constant.UtilConstants.ERROR_MESSAGES;
 import static com.javarush.levchuk.constant.UtilConstants.TEXT_MAIN_MENU;
 

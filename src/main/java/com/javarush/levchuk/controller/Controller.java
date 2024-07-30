@@ -10,7 +10,7 @@ public class Controller {
     private static Decode decode;
     private static BruteForce bruteForce;
 
-    public  ProgramMessages programMessages;
+    public ProgramMessages programMessages;
 
     public Controller(ProgramMessages programMessages) {
         this.programMessages = programMessages;
@@ -23,7 +23,7 @@ public class Controller {
         return encode;
     }
 
-    public  Decode getDecode() {
+    public Decode getDecode() {
         if (decode == null) {
             decode = new Decode(programMessages);
         }

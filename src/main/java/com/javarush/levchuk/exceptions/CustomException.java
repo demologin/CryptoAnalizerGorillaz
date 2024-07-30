@@ -1,6 +1,6 @@
 package com.javarush.levchuk.exceptions;
 
-public class CustomException extends RuntimeException{
+public class CustomException extends RuntimeException {
     public CustomException() {
     }
 
