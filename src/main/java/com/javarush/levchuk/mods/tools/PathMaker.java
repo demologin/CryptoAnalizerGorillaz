@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import static com.javarush.levchuk.constant.UtilConstants.DEFAULT_FOLDER;
 
-public abstract class PathMaker {
+public  class PathMaker {
 
     public static Path makePath(String defaultName) {
         Scanner scanner = new Scanner(System.in);

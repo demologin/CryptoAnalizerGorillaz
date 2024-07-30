@@ -13,7 +13,7 @@ import java.util.Scanner;
 import static com.javarush.levchuk.constant.Alphabet.*;
 import static com.javarush.levchuk.constant.UtilConstants.*;
 
-public abstract class Coding {
+public class Coding {
     public static void processingToFile(Path source, Path target, int key) {
         int numberChar = 0;
         try (BufferedReader reader = Files.newBufferedReader(source);
