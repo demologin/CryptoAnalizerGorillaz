@@ -11,7 +11,7 @@ public class PathMaker {
         Scanner scanner = new Scanner(System.in);
         String enterName = scanner.nextLine();
         Path path = Path.of(DEFAULT_FOLDER + defaultName);
-        if (!enterName.equals("")) {
+        if (!enterName.isEmpty()) {
             Path userPath = Path.of(enterName);
             if (userPath.isAbsolute()) {
                 path = userPath;

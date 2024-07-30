@@ -5,9 +5,7 @@ import com.javarush.levchuk.exceptions.CustomException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -16,7 +14,7 @@ import static com.javarush.levchuk.constant.UtilConstants.*;
 
 public class Coding {
     public static String processingToFile(Path source, Path target, int key) {
-        int numberChar = 0;
+        int numberChar;
         try (BufferedReader reader = Files.newBufferedReader(source);
              BufferedWriter writer = Files.newBufferedWriter(target)) {
             while ((numberChar = reader.read()) > -1) {
@@ -43,9 +41,8 @@ public class Coding {
         try {
             Scanner input = new Scanner(System.in);
             String keyLine = input.nextLine();
-            if (!keyLine.equals("")) {
-                int key = Integer.parseInt(keyLine);
-                return key;
+            if (!keyLine.isEmpty()) {
+                return Integer.parseInt(keyLine);
             }
         } catch (NumberFormatException e) {
             throw new CustomException(ERROR_MESSAGES[0]);
