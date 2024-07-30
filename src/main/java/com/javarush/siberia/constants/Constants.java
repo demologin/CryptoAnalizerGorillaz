@@ -16,6 +16,10 @@ public class Constants {
     public static final String INPUT_FILE = DEFAULT_FOLDER + "text.txt";
     public static final String ENCODED_FILE = DEFAULT_FOLDER + "encoded.txt";
     public static final String DECODED_FILE = DEFAULT_FOLDER + "decoded.txt";
+    public static final String BRUTEFORCE_FILE = DEFAULT_FOLDER + "bruteForce.txt";
+    public static final String RU_DICTIONARY_PATH = DEFAULT_FOLDER + "ru_words.txt";
+    public static final String EN_DICTIONARY_PATH = DEFAULT_FOLDER + "en_words.txt";
+
     public static final int DEFAULT_SHIFT = 3;
 
     public static final String MENU_TXT = "\nВыберите действие:\n1. Шифровать\n2. Дешифровать\n3. Взлом.\n4. Анализ.\n5. Выйти.\nВведите выбранный пункт меню: ";
