@@ -1,7 +1,7 @@
 package com.javarush.levchuk.mods;
 
 
-import com.javarush.levchuk.exceptions.CustomException;
+import com.javarush.levchuk.exceptions.AppException;
 import com.javarush.levchuk.mods.tools.Coding;
 import com.javarush.levchuk.mods.tools.PathMaker;
 import com.javarush.levchuk.view.ProgramMessages;
@@ -77,7 +77,7 @@ public class BruteForce {
                 }
             }
         } catch (IOException e) {
-            throw new CustomException(ERROR_MESSAGES[2], e);
+            throw new AppException(ERROR_MESSAGES[2], e);
         }
         return textSyllables;
     }
