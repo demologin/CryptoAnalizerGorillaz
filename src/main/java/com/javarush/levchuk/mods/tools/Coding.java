@@ -1,6 +1,7 @@
 package com.javarush.levchuk.mods.tools;
 
 import com.javarush.levchuk.constant.Alphabet;
+import com.javarush.levchuk.exceptions.CustomException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,10 +23,8 @@ public class Coding {
                 char charByNumber = Character.toLowerCase((char) numberChar);
                 writer.write(charEncryptor(charByNumber, key));
             }
-        } catch (NoSuchFileException e) {
-            System.err.printf(ERROR_MESSAGES[2]);
-        } catch (IOException e) {
-            throw new RuntimeException();
+        } catch (Exception e) {
+            throw new CustomException(ERROR_MESSAGES[2]);
         }
 
         return ANSI_GREEN + CONTEXT_MESSAGES[3] + target + ANSI_RESET;
@@ -49,7 +48,7 @@ public class Coding {
                 return key;
             }
         } catch (NumberFormatException e) {
-            System.err.println(ERROR_MESSAGES[0]);
+            throw new CustomException(ERROR_MESSAGES[0]);
         }
         return DEFAULT_KEY;
     }

@@ -1,6 +1,7 @@
 package com.javarush.levchuk.view.console;
 
 import com.javarush.levchuk.controller.Controller;
+import com.javarush.levchuk.exceptions.CustomException;
 import com.javarush.levchuk.view.ProgramMessages;
 
 import java.util.InputMismatchException;
@@ -33,8 +34,8 @@ public class ConsoleMenu {
                     case "4" -> consoleMessages.printMessage("Exit\n");
                     default -> consoleMessages.errorMessage(ERROR_MESSAGES[1]);
                 }
-            } catch (InputMismatchException e) {
-                consoleMessages.errorMessage(ERROR_MESSAGES[1]);
+            } catch (CustomException e) {
+                consoleMessages.errorMessage(e.getMessage());
             }
         } while (!input.equals("4"));
 

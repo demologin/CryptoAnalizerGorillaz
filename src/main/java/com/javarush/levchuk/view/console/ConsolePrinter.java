@@ -10,7 +10,7 @@ public class ConsolePrinter extends ProgramMessages {
 
     @Override
     public void errorMessage(String message) {
-         System.err.println(message);
+        System.err.println(message);
     }
 
     @Override

@@ -35,7 +35,8 @@ public abstract class Alphabet {
         return alphabetMap.get(character);
     }
 
-    public static final String[] SYLLABLES_RUS = new String[]{"ру", "ры", "рь", "рэ", "са", "ря", "сб", "рё", "св",
+    public static final String[] SYLLABLES_RUS = new String[]{
+            "ру", "ры", "рь", "рэ", "са", "ря", "сб", "рё", "св",
             "сг", "сд", "се", "сз", "си", "ск", "см", "сн", "со", "сп", "ср", "ст", "су",
             "сх", "сч", "сы", "сь", "сэ", "та", "ся", "сё", "те", "ти", "тк", "тл", "то",
             "тр", "ту", "тщ", "ты", "ть", "тэ", "тя", "уб", "ув", "тё", "уг", "уд", "уж",
