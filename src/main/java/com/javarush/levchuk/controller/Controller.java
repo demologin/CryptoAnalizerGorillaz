@@ -10,27 +10,27 @@ public class Controller {
     private static Decode decode;
     private static BruteForce bruteForce;
 
-    public static ProgramMessages programMessages;
+    public  ProgramMessages programMessages;
 
     public Controller(ProgramMessages programMessages) {
         this.programMessages = programMessages;
     }
 
-    public static synchronized Encode getEncode() {
+    public Encode getEncode() {
         if (encode == null) {
             encode = new Encode(programMessages);
         }
         return encode;
     }
 
-    public static synchronized Decode getDecode() {
+    public  Decode getDecode() {
         if (decode == null) {
             decode = new Decode(programMessages);
         }
         return decode;
     }
 
-    public static synchronized BruteForce getBruteForce() {
+    public BruteForce getBruteForce() {
         if (bruteForce == null) {
             bruteForce = new BruteForce(programMessages);
         }

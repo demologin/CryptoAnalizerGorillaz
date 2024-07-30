@@ -24,7 +24,7 @@ public class Decode {
 
         messages.printfMessage(CONTEXT_MESSAGES[2], Integer.toString(DEFAULT_KEY));
         int key = Coding.enterKey();
-        Coding.processingToFile(source, target, -1 * key);
+        messages.printfMessage(Coding.processingToFile(source, target, -1 * key));
 
     }
 }

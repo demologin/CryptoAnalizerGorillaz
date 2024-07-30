@@ -14,7 +14,7 @@ import static com.javarush.levchuk.constant.Alphabet.*;
 import static com.javarush.levchuk.constant.UtilConstants.*;
 
 public class Coding {
-    public static void processingToFile(Path source, Path target, int key) {
+    public static String processingToFile(Path source, Path target, int key) {
         int numberChar = 0;
         try (BufferedReader reader = Files.newBufferedReader(source);
              BufferedWriter writer = Files.newBufferedWriter(target)) {
@@ -27,9 +27,8 @@ public class Coding {
         } catch (IOException e) {
             throw new RuntimeException();
         }
-        if (numberChar == -1) {
-            System.out.printf(ANSI_GREEN + CONTEXT_MESSAGES[3] + target + ANSI_RESET);
-        }
+
+        return ANSI_GREEN + CONTEXT_MESSAGES[3] + target + ANSI_RESET;
     }
 
     public static char charEncryptor(char character, int key) {

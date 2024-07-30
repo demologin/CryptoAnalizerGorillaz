@@ -8,19 +8,18 @@ import java.util.Scanner;
 
 import static com.javarush.levchuk.constant.UtilConstants.ERROR_MESSAGES;
 import static com.javarush.levchuk.constant.UtilConstants.TEXT_MAIN_MENU;
-import static com.javarush.levchuk.controller.Controller.*;
 
 
-public class MainMenu {
+public class ConsoleMenu {
     public ProgramMessages consoleMessages;
     public Controller controller;
 
-    public MainMenu(ProgramMessages consoleMessages, Controller controller) {
+    public ConsoleMenu(ProgramMessages consoleMessages, Controller controller) {
         this.consoleMessages = consoleMessages;
         this.controller = controller;
     }
 
-    public void printMainMenu() {
+    public void runApp() {
         String input = "";
         do {
             try {

@@ -27,7 +27,7 @@ public class Encode {
 
         messages.printfMessage(CONTEXT_MESSAGES[2], Integer.toString(DEFAULT_KEY));
         int key = enterKey();
-        Coding.processingToFile(source, target, key);
+        messages.printfMessage(Coding.processingToFile(source, target, key));
 
     }
 }

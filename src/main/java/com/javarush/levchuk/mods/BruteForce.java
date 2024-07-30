@@ -32,7 +32,7 @@ public class BruteForce {
         Path target = PathMaker.makePath(DEFAULT_BRUTEFORCE_FILE_NAME);
 
         int key = searchKey(source);
-        Coding.processingToFile(source, target, key);
+        messages.printfMessage(Coding.processingToFile(source, target, key));
     }
 
     public int searchKey(Path source) {
