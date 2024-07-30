@@ -32,6 +32,4 @@ public interface UtilConstants {
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_YELLOW = "\u001B[33m";
 
-
-
 }
