@@ -1,4 +1,4 @@
-package com.javarush.siberia;
+package com.javarush.siberia.menu;
 
 import com.javarush.siberia.exception.AppException;
 import com.javarush.siberia.controllers.MainController;
@@ -6,10 +6,10 @@ import com.javarush.siberia.entity.Result;
 
 import java.util.Arrays;
 
-public class Application {
+public class ConsoleApplication {
 
     private final MainController mainController;
-    public Application() {
+    public ConsoleApplication() {
         mainController = new MainController();
     }
 

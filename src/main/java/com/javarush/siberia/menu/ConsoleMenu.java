@@ -1,16 +1,15 @@
 package com.javarush.siberia.menu;
 
-import com.javarush.siberia.Application;
 import com.javarush.siberia.constants.Constants;
 
 import java.util.Scanner;
 
-public class Menu {
+public class ConsoleMenu {
 
-    private final Application application;
+    private final ConsoleApplication consoleApplication;
 
-    public Menu(Application application) {
-        this.application = application;
+    public ConsoleMenu(ConsoleApplication consoleApplication) {
+        this.consoleApplication = consoleApplication;
     }
 
     public void showMenu() {
@@ -61,7 +60,7 @@ public class Menu {
                 : Integer.parseInt(encodeKeyInput);
 
         String[] encodeArgs = {"encode", String.valueOf(encodeKey), encodeInputPath, encodeOutputPath};
-        application.run(encodeArgs);
+        consoleApplication.run(encodeArgs);
         System.out.println("Шифрование завершено.");
     }
 
@@ -85,7 +84,7 @@ public class Menu {
                 : Integer.parseInt(decodeKeyInput);
 
         String[] decodeArgs = {"decode", String.valueOf(decodeKey), decodeInputPath, decodeOutputPath};
-        application.run(decodeArgs);
+        consoleApplication.run(decodeArgs);
         System.out.println("Дешифрование завершено.");
     }
 
