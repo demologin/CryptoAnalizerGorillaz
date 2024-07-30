@@ -1,11 +1,11 @@
 package com.javarush.levchuk.view.console;
 
 import com.javarush.levchuk.controller.Controller;
-import com.javarush.levchuk.exceptions.CustomException;
+import com.javarush.levchuk.exceptions.AppException;
 import com.javarush.levchuk.view.ProgramMessages;
 import java.util.Scanner;
-import static com.javarush.levchuk.constant.UtilConstants.ERROR_MESSAGES;
-import static com.javarush.levchuk.constant.UtilConstants.TEXT_MAIN_MENU;
+
+import static com.javarush.levchuk.constant.UtilConstants.*;
 
 
 public class ConsoleMenu {
@@ -21,7 +21,7 @@ public class ConsoleMenu {
         String input = "";
         do {
             try {
-                consoleMessages.printMessage(TEXT_MAIN_MENU);
+                consoleMessages.printMessage(ANSI_GREEN + TEXT_MAIN_MENU + ANSI_RESET);
                 Scanner scanner = new Scanner(System.in);
                 input = scanner.nextLine();
                 switch (input) {
@@ -31,7 +31,7 @@ public class ConsoleMenu {
                     case "4" -> consoleMessages.printMessage("Exit\n");
                     default -> consoleMessages.errorMessage(ERROR_MESSAGES[1]);
                 }
-            } catch (CustomException e) {
+            } catch (AppException e) {
                 consoleMessages.errorMessage(e.getMessage());
             }
         } while (!input.equals("4"));
