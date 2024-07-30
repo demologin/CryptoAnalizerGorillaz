@@ -10,9 +10,7 @@ public class ConsoleRunner {
     public static void main(String[] args) {
         ProgramMessages consolePrinter = new ConsolePrinter();
         Controller controller = new Controller(consolePrinter);
-        MainMenu mainMenu = new MainMenu(consolePrinter);
+        MainMenu mainMenu = new MainMenu(consolePrinter, controller);
         mainMenu.printMainMenu();
     }
 }
-
-
