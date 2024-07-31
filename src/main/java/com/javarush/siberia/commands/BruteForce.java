@@ -36,22 +36,29 @@ public class BruteForce implements Action{
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
 
+        int foundShift = -1;
+
         for (int shift = 0; shift < Constants.ALPHABET.length; shift++) {
             char[] bruteforcedText = cipher.decrypt(text, shift);
 
-            if(isMeaningful(bruteforcedText, ruWords) || isMeaningful(bruteforcedText, enWords)) {
-                try {
-                    FileReadWrite.writeFile(Constants.BRUTEFORCE_FILE, bruteforcedText);
-                } catch (IOException e) {
-                    return new Result("Ошибка записи в файл", ResultCode.ERROR);
-                }
-                int correctShift = shift + 1; //это костыль =(
-                System.out.println("Удалось взломать зашифрованный текст с ключом сдвига: " + correctShift);
-
-                return new Result(new String(bruteforcedText), ResultCode.OK);
+            if (isMeaningful(bruteforcedText, ruWords) || isMeaningful(bruteforcedText, enWords)) {
+                foundShift = shift + 1; //это костыль =(
+                break;
             }
         }
-        return new Result("Не удалось понять шифрованый текст, я всего лишь алгоритм. Прикрути мне ИИ!", ResultCode.ERROR);
+
+        if (foundShift != -1) {
+            char[] shiftedText = cipher.decrypt(text, foundShift); //это костыль =(
+            try {
+                FileReadWrite.writeFile(Constants.BRUTEFORCE_FILE, shiftedText);
+            } catch (IOException e) {
+                return new Result("Ошибка записи в файл", ResultCode.ERROR);
+            }
+            System.out.println("Взломанный текст найден и сохранён с ключом сдвига: " + foundShift);
+            return new Result("Удалось взломать ключ сдвига. Текущий сдвиг: " + foundShift, ResultCode.OK);
+        } else {
+            return new Result("Не удалось понять шифрованный текст, я всего лишь алгоритм. Прикрути мне ИИ!", ResultCode.ERROR);
+        }
     }
 
     private boolean isMeaningful(char[] text, Set<String> dictionary) {
@@ -63,7 +70,7 @@ public class BruteForce implements Action{
                 meaningfulWordCount++;
             }
         }
-        return  meaningfulWordCount > words.length * 0.8;
+        return  meaningfulWordCount > words.length * 0.8; // на 0,5 не работает корректное определение английских слов
     }
 
 }
