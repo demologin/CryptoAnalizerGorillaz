@@ -89,7 +89,21 @@ public class ConsoleMenu {
     }
 
     private void toBruteForce(Scanner scanner) {
-        System.out.println("В разработке... Ожидайте новых обновлений.");
+        System.out.print(Constants.BRUTEFORCE_TXT);
+        String bruteForceInputPath = scanner.nextLine().trim();
+        if (bruteForceInputPath.isEmpty()) {
+            bruteForceInputPath = Constants.ENCODED_FILE;
+        }
+
+        System.out.print(Constants.BRUTEFORCE_OUTPUT_TXT);
+        String bruteForceOutputPath = scanner.nextLine().trim();
+        if (bruteForceOutputPath.isEmpty()) {
+            bruteForceOutputPath = Constants.BRUTEFORCE_FILE;
+        }
+
+        String[] bruteForceArgs = {"bruteforce", bruteForceInputPath, bruteForceOutputPath};
+        consoleApplication.run(bruteForceArgs);
+        System.out.println("Взлом завершен.");
     }
 
     private void toAnalyse(Scanner scanner) {

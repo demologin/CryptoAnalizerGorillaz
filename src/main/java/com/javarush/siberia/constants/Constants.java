@@ -25,8 +25,11 @@ public class Constants {
     public static final String MENU_TXT = "\nВыберите действие:\n1. Шифровать\n2. Дешифровать\n3. Взлом.\n4. Анализ.\n5. Выйти.\nВведите выбранный пункт меню: ";
     public static final String ENCODE_TXT = "Введите путь к файлу для шифрования (или нажмите Enter для пути по умолчанию): ";
     public static final String DECODE_TXT = "Введите путь к файлу для дешифрования (или нажмите Enter для пути по умолчанию): ";
+    public static final String BRUTEFORCE_TXT = "Введите путь к зашифрованному файлу (или нажмите Enter для пути по умолчанию): ";
     public static final String OUTPUT_TXT = "Введите путь для сохранения результата (или нажмите Enter для использования пути по умолчанию): ";
+    public static final String BRUTEFORCE_OUTPUT_TXT = "Введите путь для сохранения результата взлома (или нажмите Enter для использования пути по умолчанию): ";
     public static final String KEY_TXT = "Введите ключ (или нажмите Enter для сдвига по умолчанию - 3): ";
     public static final String INVALID_CHOICE_TXT = "Нет такого пункта, попробуйте снова.";
     public static final String EXIT_TXT = "Выход из программы...";
+
 }
