@@ -1,14 +1,17 @@
 package com.javarush.Grebenshikov.Encode;
 
-import com.javarush.Grebenshikov.Commands.Activator;
-import com.javarush.Grebenshikov.NiceResult;
 
-public class Encrypt implements Activator {
+public class Encrypt  {
 
+    public  Encrypt(){
 
-    @Override
-    public NiceResult execute(String[] parameters) {
-        return null;
+        System.out.println("now complete");
+
     }
-}
+
+
+
+
+    }
+
 
