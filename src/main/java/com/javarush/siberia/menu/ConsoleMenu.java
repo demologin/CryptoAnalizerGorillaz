@@ -18,24 +18,15 @@ public class ConsoleMenu {
             System.out.print(Constants.MENU_TXT);
             String choice = scanner.nextLine();
             switch (choice) {
-                case "1":
-                    toEncode(scanner);
-                    break;
-                case "2":
-                    toDecode(scanner);
-                    break;
-                case "3":
-                    toBruteForce(scanner);
-                    return;
-                case "4":
-                    toAnalyse(scanner);
-                    return;
-                case "5":
+                case "1" -> toEncode(scanner);
+                case "2" -> toDecode(scanner);
+                case "3" -> toBruteForce(scanner);
+                case "4" -> toAnalyse(scanner);
+                case "5" -> {
                     System.out.println(Constants.EXIT_TXT);
                     return;
-                default:
-                    System.out.println(Constants.INVALID_CHOICE_TXT);
-                    break;
+                }
+                default -> System.out.println(Constants.INVALID_CHOICE_TXT);
             }
         }
     }
@@ -107,6 +98,20 @@ public class ConsoleMenu {
     }
 
     private void toAnalyse(Scanner scanner) {
-        System.out.println("В разработке... Ожидайте новых обновлений.");
+        System.out.print(Constants.ANALYSE_TXT);
+        String analyseInputPath = scanner.nextLine().trim();
+        if (analyseInputPath.isEmpty()) {
+            analyseInputPath = Constants.ENCODED_FILE;
+        }
+
+        System.out.print(Constants.ANALYSE_OUTPUT_TXT);
+        String analyseOutputPath = scanner.nextLine().trim();
+        if (analyseOutputPath.isEmpty()) {
+            analyseOutputPath = Constants.ANALYSIS_FILE;
+        }
+
+        String[] analyseArgs = {"analysis", analyseInputPath, analyseOutputPath};
+        consoleApplication.run(analyseArgs);
+        System.out.println("Анализ завершен.");
     }
 }

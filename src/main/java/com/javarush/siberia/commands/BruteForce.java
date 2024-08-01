@@ -29,9 +29,12 @@ public class BruteForce implements Action{
     @Override
     public Result execute(String[] parameters) {
 
+        String inputFilePath = parameters[0];
+        String outputFilePath = parameters[1];
+
         char[] text;
         try {
-            text = FileReadWrite.readFile(Constants.ENCODED_FILE);
+            text = FileReadWrite.readFile(inputFilePath);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
@@ -50,7 +53,7 @@ public class BruteForce implements Action{
         if (foundShift != -1) {
             char[] shiftedText = cipher.decrypt(text, foundShift); //это костыль =(
             try {
-                FileReadWrite.writeFile(Constants.BRUTEFORCE_FILE, shiftedText);
+                FileReadWrite.writeFile(outputFilePath, shiftedText);
             } catch (IOException e) {
                 return new Result("Ошибка записи в файл", ResultCode.ERROR);
             }
@@ -70,7 +73,7 @@ public class BruteForce implements Action{
                 meaningfulWordCount++;
             }
         }
-        return  meaningfulWordCount > words.length * 0.8; // на 0,5 не работает корректное определение английских слов
+        return  meaningfulWordCount > words.length * 0.8;
     }
 
 }

@@ -16,6 +16,9 @@ public class Encoder implements Action{
     @Override
     public Result execute(String[] parameters) {
 
+        String inputFilePath = parameters[1];
+        String outputFilePath = parameters[2];
+
         int shift = Constants.DEFAULT_SHIFT;
 
         if (parameters.length > 0) {
@@ -28,7 +31,7 @@ public class Encoder implements Action{
 
         char[] text;
         try {
-            text = FileReadWrite.readFile(Constants.INPUT_FILE);
+            text = FileReadWrite.readFile(inputFilePath);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
@@ -36,7 +39,7 @@ public class Encoder implements Action{
         char[] encryptedText = cipher.encrypt(text, shift);
 
         try {
-            FileReadWrite.writeFile(Constants.ENCODED_FILE, encryptedText);
+            FileReadWrite.writeFile(outputFilePath, encryptedText);
         } catch (IOException e) {
             return new Result("Ошибка записи в файл", ResultCode.ERROR  );
         }

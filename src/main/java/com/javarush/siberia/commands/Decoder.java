@@ -15,6 +15,9 @@ public class Decoder implements Action{
     @Override
     public Result execute(String[] parameters) {
 
+        String inputFilePath = parameters[1];
+        String outputFilePath = parameters[2];
+
         int shift = Constants.DEFAULT_SHIFT;
 
         if (parameters.length > 0) {
@@ -27,7 +30,7 @@ public class Decoder implements Action{
 
         char[] text;
         try {
-            text = FileReadWrite.readFile(Constants.ENCODED_FILE);
+            text = FileReadWrite.readFile(inputFilePath);
         } catch (IOException e) {
             return new Result("Не могу прочитать файл", ResultCode.ERROR);
         }
@@ -35,7 +38,7 @@ public class Decoder implements Action{
         char[] decryptedText = cipher.decrypt(text, shift);
 
         try {
-            FileReadWrite.writeFile(Constants.DECODED_FILE, decryptedText);
+            FileReadWrite.writeFile(outputFilePath, decryptedText);
         } catch (IOException e) {
             return new Result("Не могу записать в файл", ResultCode.ERROR);
         }
