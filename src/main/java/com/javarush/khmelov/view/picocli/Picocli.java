@@ -1,13 +1,13 @@
 package com.javarush.khmelov.view.picocli;
 
+import com.javarush.khmelov.constant.Const;
+import com.javarush.khmelov.entity.Result;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.ParameterException;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Spec;
-import com.javarush.khmelov.constant.Const;
-import com.javarush.khmelov.entity.Result;
 
 import static com.javarush.khmelov.view.picocli.Messages.*;
 

@@ -1,9 +1,9 @@
 package com.javarush.khmelov;
 
-import picocli.CommandLine;
 import com.javarush.khmelov.controller.MainController;
 import com.javarush.khmelov.view.picocli.Picocli;
 import com.javarush.khmelov.view.picocli.PicocliApp;
+import picocli.CommandLine;
 
 public class PicocliRunner {
     public static void main(String[] args) {
