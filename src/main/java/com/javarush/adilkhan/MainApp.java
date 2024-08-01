@@ -1,5 +1,6 @@
 package com.javarush.adilkhan;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainApp {
@@ -15,10 +16,20 @@ public class MainApp {
 
         int userNumber = scanner.nextInt();
         if(userNumber == 1) {
+            System.out.println("Введите название файла для чтения:");
             String inputFileName = scanner.nextLine();
+
+            System.out.println("Введите название файла для записи:");
             String outputFileName = scanner.nextLine();
+
+            System.out.println("Введите ключ для шифрования:");
             int keyValue = scanner.nextInt();
-//            cipher.encrypt(inputFileName, outputFileName, keyValue);
+
+            try {
+                cipher.encrypt(inputFileName, outputFileName, keyValue);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else if (userNumber == 2) {
 
         }
