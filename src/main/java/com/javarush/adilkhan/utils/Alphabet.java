@@ -12,8 +12,8 @@ public class Alphabet {
     public final static List<Character> characterSet = new ArrayList<>();
 
     static {
-        for (int i = 0; i < ALPHABET.length; i++) {
-            characterSet.add(ALPHABET[i]);
+        for (char c : ALPHABET) {
+            characterSet.add(c);
         }
     }
 

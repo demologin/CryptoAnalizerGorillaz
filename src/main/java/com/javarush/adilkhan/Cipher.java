@@ -32,4 +32,8 @@ public class Cipher {
             }
         }
     }
+
+    public void decrypt(String inputFile, String outputFile, int key) throws IOException {
+            encrypt(inputFile, outputFile, Alphabet.characterSet.size() - key);
+    }
 }

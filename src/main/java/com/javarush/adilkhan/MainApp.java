@@ -15,7 +15,7 @@ public class MainApp {
                 0. Выход""");
 
         int userNumber = scanner.nextInt();
-        if(userNumber == 1) {
+        if (userNumber == 1) {
             System.out.println("Введите название файла для чтения:");
             String inputFileName = scanner.nextLine();
 
@@ -31,7 +31,20 @@ public class MainApp {
                 throw new RuntimeException(e);
             }
         } else if (userNumber == 2) {
+            System.out.println("Введите название файла для чтения:");
+            String inputFileName = scanner.nextLine();
 
+            System.out.println("Введите название файла для записи:");
+            String outputFileName = scanner.nextLine();
+
+            System.out.println("Введите ключ для шифрования:");
+            int keyValue = scanner.nextInt();
+
+            try {
+                cipher.decrypt(inputFileName, outputFileName, keyValue);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
