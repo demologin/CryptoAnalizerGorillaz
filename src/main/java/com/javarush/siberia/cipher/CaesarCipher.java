@@ -5,7 +5,6 @@ import com.javarush.siberia.constants.Constants;
 public class CaesarCipher {
 
     private final char[] alphabet = Constants.ALPHABET;
-    private final char[] analysisAlphabet = Constants.ANALYSIS_ALPHABET;
 
     public char[] encrypt(char[] text, int shift) {
         return shiftText(text, shift);
@@ -13,28 +12,6 @@ public class CaesarCipher {
 
     public char[] decrypt(char[] text, int shift) {
         return shiftText(text, -shift);
-    }
-
-    public char[] analysisDecrypt(char[] text, int shift, char[] alphabet) {
-        return analysisShiftText(text, -shift, analysisAlphabet);
-    }
-
-    private char[] analysisShiftText(char[] text, int shift, char[] alphabet) {
-        char[] result = new char[text.length];
-        int alphabetLength = analysisAlphabet.length;
-
-        for (int i = 0; i < text.length; i++) {
-            char currentChar = text[i];
-            int index = analysisIndexOf(analysisAlphabet, currentChar);
-
-            if (index != -1) {
-                int newIndex = (index + shift + alphabetLength) % alphabetLength;
-                result[i] = analysisAlphabet[newIndex];
-            } else {
-                result[i] = currentChar;
-            }
-        }
-        return result;
     }
 
     private char[] shiftText(char[] text, int shift) {
@@ -55,15 +32,6 @@ public class CaesarCipher {
         return result;
     }
 
-    private int analysisIndexOf(char[] array, char target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     private int indexOf(char character) {
         for (int i = 0; i < alphabet.length; i++) {
             if (alphabet[i] == character) {
@@ -71,5 +39,28 @@ public class CaesarCipher {
             }
         }
         return -1;
+    }
+
+    public int analysisIndexOf(char[] alphabet, char character) {
+        for (int i = 0; i < alphabet.length; i++) {
+            if (alphabet[i] == character) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public char[] analysisDecryptText(char[] text, int shift, char[] alphabet) {
+        char[] decryptedText = new char[text.length];
+        for (int i = 0; i < text.length; i++) {
+            int index = analysisIndexOf(alphabet, text[i]);
+            if (index != -1) {
+                int newIndex = (index - shift + alphabet.length) % alphabet.length;
+                decryptedText[i] = alphabet[newIndex];
+            } else {
+                decryptedText[i] = text[i];
+            }
+        }
+        return decryptedText;
     }
 }

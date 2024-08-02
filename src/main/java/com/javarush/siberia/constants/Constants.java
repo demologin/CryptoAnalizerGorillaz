@@ -32,8 +32,6 @@ public class Constants {
     public static final String INVALID_CHOICE_TXT = "Нет такого пункта, попробуйте снова.";
     public static final String EXIT_TXT = "Выход из программы...";
 
-    //public static final char[] ANALYSIS_ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz".toCharArray();
-    public static final char[] ANALYSIS_ALPHABET = "йцукенгшщзхъфывапролджэячсмитьбюaqwertyuiopasdfghjklzxcvbnm".toCharArray();
     public static final String ANALYSIS_FILE = DEFAULT_FOLDER + "analysis.txt";
     public static final String ANALYSE_TXT = "Введите путь к зашифрованному файлу для анализа (или нажмите Enter для использования файла по умолчанию): ";
     public static final String ANALYSE_OUTPUT_TXT = "Введите путь для сохранения расшифрованного файла (или нажмите Enter для использования файла по умолчанию): ";
