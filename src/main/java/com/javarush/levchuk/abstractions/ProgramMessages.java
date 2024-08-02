@@ -1,4 +1,4 @@
-package com.javarush.levchuk.view;
+package com.javarush.levchuk.abstractions;
 
 public abstract class ProgramMessages {
 

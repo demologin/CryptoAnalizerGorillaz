@@ -2,7 +2,7 @@ package com.javarush.levchuk.view.console;
 
 import com.javarush.levchuk.controller.Controller;
 import com.javarush.levchuk.exceptions.AppException;
-import com.javarush.levchuk.view.ProgramMessages;
+import com.javarush.levchuk.abstractions.ProgramMessages;
 
 import java.util.Scanner;
 
@@ -29,7 +29,7 @@ public class ConsoleMenu {
                     case "1" -> controller.getEncode().runEncode();
                     case "2" -> controller.getDecode().runDecode();
                     case "3" -> controller.getBruteForce().runBruteForce();
-                    case "4" -> consoleMessages.printMessage("Exit\n");
+                    case "4" -> consoleMessages.printMessage(ANSI_YELLOW + CONTEXT_MESSAGES[4] + ANSI_RESET);
                     default -> consoleMessages.errorMessage(ERROR_MESSAGES[1]);
                 }
             } catch (AppException e) {

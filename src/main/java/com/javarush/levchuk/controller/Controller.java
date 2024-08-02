@@ -3,7 +3,7 @@ package com.javarush.levchuk.controller;
 import com.javarush.levchuk.mods.BruteForce;
 import com.javarush.levchuk.mods.Decode;
 import com.javarush.levchuk.mods.Encode;
-import com.javarush.levchuk.view.ProgramMessages;
+import com.javarush.levchuk.abstractions.ProgramMessages;
 
 public class Controller {
     private static Encode encode;

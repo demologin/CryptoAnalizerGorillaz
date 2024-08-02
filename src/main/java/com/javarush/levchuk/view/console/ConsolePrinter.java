@@ -1,6 +1,7 @@
 package com.javarush.levchuk.view.console;
 
-import com.javarush.levchuk.view.ProgramMessages;
+
+import com.javarush.levchuk.abstractions.ProgramMessages;
 
 public class ConsolePrinter extends ProgramMessages {
     @Override

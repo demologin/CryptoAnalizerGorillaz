@@ -25,7 +25,7 @@ public class Coding {
             throw new AppException(ERROR_MESSAGES[2]);
         }
 
-        return ANSI_YELLOW + CONTEXT_MESSAGES[3] + target + ANSI_RESET;
+        return CONTEXT_MESSAGES[3] + target;
     }
 
     public static char charEncryptor(char character, int key) {

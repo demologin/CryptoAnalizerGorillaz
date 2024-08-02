@@ -20,8 +20,9 @@ public interface UtilConstants {
             "\nEnter the full path to the file. Or its name.extension if it is in the default folder (Or Enter for %s) : \s\n",
             "Enter the full path or name.extension for the output file (Or Enter for %s) : \s\n",
             "Enter key (int number OR Enter for key=%s) : \s\n",
-            "Result is written to a file : \s\n"
-
+            "Result is written to a file : \s\n",
+            "\n___________________________\n" + "The program is closed.\n",
+            "The found key: %s \n"
     };
     String[] ERROR_MESSAGES = {
             "\nIncorrect key format. Please use numbers\n",

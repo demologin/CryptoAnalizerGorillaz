@@ -4,7 +4,7 @@ package com.javarush.levchuk.mods;
 import com.javarush.levchuk.exceptions.AppException;
 import com.javarush.levchuk.mods.tools.Coding;
 import com.javarush.levchuk.mods.tools.PathMaker;
-import com.javarush.levchuk.view.ProgramMessages;
+import com.javarush.levchuk.abstractions.ProgramMessages;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +33,7 @@ public class BruteForce {
         Path target = PathMaker.makePath(DEFAULT_BRUTEFORCE_FILE_NAME);
 
         int key = searchKey(source);
+        messages.printfMessage(CONTEXT_MESSAGES[5], Integer.toString(key));
         messages.printfMessage(Coding.processingToFile(source, target, key));
     }
 
@@ -58,8 +59,8 @@ public class BruteForce {
     public Map<String, Integer> getTextToSyllables(Path path, int key) {
         Map<String, Integer> textSyllables = new HashMap<>();
         try (BufferedReader reader = Files.newBufferedReader(path)) {
-            char firstChar = ' ';
-            char secondChar = ' ';
+            char firstChar;
+            char secondChar;
             int numberChar;
             while ((numberChar = reader.read()) > -1) {
                 firstChar = Coding.charEncryptor((Character.toLowerCase((char) numberChar)), key);

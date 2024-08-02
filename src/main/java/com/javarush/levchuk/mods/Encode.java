@@ -3,7 +3,7 @@ package com.javarush.levchuk.mods;
 
 import com.javarush.levchuk.mods.tools.Coding;
 import com.javarush.levchuk.mods.tools.PathMaker;
-import com.javarush.levchuk.view.ProgramMessages;
+import com.javarush.levchuk.abstractions.ProgramMessages;
 
 import java.nio.file.Path;
 
