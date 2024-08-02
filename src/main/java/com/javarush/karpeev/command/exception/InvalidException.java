@@ -1,6 +1,8 @@
 package com.javarush.karpeev.command.exception;
 
-public class InvalidException extends RuntimeException {
+import java.io.IOException;
+
+public class InvalidException extends IOException {
     public InvalidException() {
 
     }

@@ -1,16 +1,14 @@
 package com.javarush.karpeev.util;
 
-import com.javarush.karpeev.command.exception.InvalidException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class FileManager {
+public class FileController {
     public String readFile(String sourceString) throws IOException {
         String sourceList = Files.readString(PathBuilder.getPath(sourceString));
-
-
-
         return sourceList;
+    }
+    public static void writeFile (String adresToWrite,String text) throws IOException {
+        Files.writeString(PathBuilder.writePath(adresToWrite), text);
     }
 }

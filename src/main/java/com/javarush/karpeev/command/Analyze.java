@@ -3,7 +3,6 @@ package com.javarush.karpeev.command;
 import com.javarush.karpeev.constant.Alphabet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class Analyze {
@@ -31,7 +30,7 @@ public class Analyze {
         char[] testArrayChar = {'.', ',', '!', '?'};
         char[] tempArrayCharText = new char[incodeText.length()];
         ArrayList<Character> sniffedAlphabed = new ArrayList<>();
-        sniffedAlphabed.addAll(Alphabet.characterArrayList);
+        sniffedAlphabed.addAll(Alphabet.characterAlphabed);
 
         for (int i = 0; i < sniffedAlphabed.size(); i++) {
             Collections.rotate(sniffedAlphabed, 1);
@@ -39,10 +38,10 @@ public class Analyze {
             /** Сравниваем с оригинальным алфавитом и присваимем элемент оригинального алфавита,
              под индексом такого же элемента в смещенном алфавите*/
             for (int j = 0; j < tempArrayCharText.length - 1; j++) {
-                if (Alphabet.characterArrayList.contains(tempArrayCharText[j])) {
-                    tempArrayCharText[j] = Alphabet.characterArrayList.get(sniffedAlphabed.indexOf(tempArrayCharText[j]));
+                if (Alphabet.characterAlphabed.contains(tempArrayCharText[j])) {
+                    tempArrayCharText[j] = Alphabet.characterAlphabed.get(sniffedAlphabed.indexOf(tempArrayCharText[j]));
                 }
-            }  /** Далее ниже будем анализировать изменeнный текст, циклом выше. Считать ситуации, когда
+            }  /** Далее ниже будем анализировать изменeнный текст циклом выше. Считать ситуации, когда
              * после знака препинания из цикла testArrayChar идет пробел. Ситуацию с лучшим показателем счетчика
              * counterKeysSpace считаем за правильный вариант текста*/
 
