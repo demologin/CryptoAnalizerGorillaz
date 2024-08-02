@@ -1,6 +1,6 @@
 package com.javarush.karpeev.util;
 
-import com.javarush.karpeev.command.exception.InvalidException;
+import com.javarush.karpeev.command.InvalidException;
 import com.javarush.karpeev.constant.Alphabet;
 import com.javarush.karpeev.constant.Messages;
 
