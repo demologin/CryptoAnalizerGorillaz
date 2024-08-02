@@ -10,6 +10,6 @@ public class Const {
     private static final String eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String num = "1234567890";
     private static final String cym = "!@#$%^&*()_+-=*/.,<>[]{};:'\" `~";
-        private static final String alphabet1 = (rus + rus.toLowerCase() + eng + eng.toLowerCase() + num + cym);
+        private static final String alphabet1 = ( rus.toLowerCase() + num + cym);
     public static final char[] ALPHABET = alphabet1.toCharArray();
 }

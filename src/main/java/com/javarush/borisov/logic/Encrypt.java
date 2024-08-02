@@ -54,14 +54,6 @@ public class Encrypt {
            System.out.println(Messages.UNKNOWN_ERROR +e.getMessage());
        }
 
-
-//        Files.writeString(pathToEncryptedFile, list.get(0), Charset.defaultCharset());
-//        for (int i = 1; i < list.size(); i++) {
-//
-//            Files.writeString(pathToEncryptedFile, "\n" + list.get(i), StandardOpenOption.APPEND);
-//        }
-
-
         System.out.println(Messages.ENCODE_FINISH);
 
     }

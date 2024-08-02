@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FindFreqChar {
-    protected static char findFrequentChar(String line) {
+    public static char findFrequentChar(String line) {
         Map<Character, Integer> chars = new HashMap<>();
 
         for (int i = 0; i < line.length(); i++) {
@@ -35,7 +35,7 @@ public class FindFreqChar {
 
     }
 
-    public static char findFrequentDoubleChar(String line, String regex, int regexLength, int returnPos) {
+    public static char[] findFrequentDoubleChar(String line, String regex, int regexLength, int returnPos) {
         Map<String, Integer> doubleChar = new HashMap<>();
 
         Pattern pattern = Pattern.compile(regex);
@@ -44,7 +44,7 @@ public class FindFreqChar {
             String tmp = line.substring(i, i + regexLength );
             Matcher matcher = pattern.matcher(tmp);
             if (matcher.find()) {
-                if(doubleChar.containsKey(tmp)) {
+                if(doubleChar.containsKey(tmp) && !StatDecode.newAlphabet.containsValue(tmp.charAt(returnPos))) {
                     doubleChar.put(tmp, Integer.parseInt(doubleChar.get(tmp).toString()) + 1);
                 }else{
                     doubleChar.put(tmp, 1);
@@ -54,36 +54,18 @@ public class FindFreqChar {
 
         }
 
-        //Matcher matcher = pattern.matcher(input);
 
-//        for (Map.Entry entry : doubleChar.entrySet()) {
-//            if (matcher.find()) {
-//                if (entry.getKey().toString().equals(matcher.group(knownChar.length()-1) + knownChar)) {
-//                    doubleChar.put(entry.getKey().toString(), Integer.parseInt(entry.getValue().toString()) + 1);
-//                }
-//            }
-//        }
-
-
-//        for (int i = 0; i < line.length(); i++) {
-//            if (doubleChar.containsKey(line.charAt(i) + knownChar)) {
-//
-//                {
-//
-//                    doubleChar.put(((line.charAt(i) + knownChar)), doubleChar.get((line.charAt(i) + knownChar)) + 1);
-//                }
-//            }
-//        }
-//
-//
         int maxValue = Integer.MIN_VALUE; // Начальное значение
         String key = "";
         for (Map.Entry entry : doubleChar.entrySet()) {
 
 
             if (Integer.parseInt(entry.getValue().toString()) > maxValue) {
-                maxValue = Integer.parseInt(entry.getValue().toString());
                 key = entry.getKey().toString().substring(0,regexLength);
+                if (!StatDecode.newAlphabet.containsValue(key.charAt(returnPos))) {
+                    maxValue = Integer.parseInt(entry.getValue().toString());
+                }
+
 
             }
 //
@@ -92,8 +74,9 @@ public class FindFreqChar {
         System.out.println("пара = |" + key + "|" + " частота встречи = |" + maxValue + "|");
 
 
-        //System.out.println(doubleChar);
-        return key.charAt(returnPos);
+        System.out.println(doubleChar);
+
+        return key.toCharArray();
 
 
     }
