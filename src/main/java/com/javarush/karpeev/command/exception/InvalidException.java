@@ -1,4 +1,4 @@
-package com.javarush.karpeev.command;
+package com.javarush.karpeev.command.exception;
 
 import java.io.IOException;
 
