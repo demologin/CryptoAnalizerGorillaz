@@ -58,7 +58,7 @@ public class Analyze {
 
             }
 
-            if (tempCounterKeysSpace > counterKeysSpace ) {
+            if (tempCounterKeysSpace > counterKeysSpace) {
                 counterKeysSpace = tempCounterKeysSpace;
                 key = analyzeKey;
 

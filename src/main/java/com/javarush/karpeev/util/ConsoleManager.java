@@ -18,41 +18,49 @@ public class ConsoleManager extends InvalidException {
 
 
         while (!mode) {
-
+        try {
             System.out.println(Messages.SELECTMODE);
             mod = scannerLine.nextLine();
             if (mod.equals("0")) {
                 return new String[]{Messages.APPEXIT};
 
             }
-            if (mod == null || mod.isEmpty() || Integer.parseInt(mod) > 3 || Integer.parseInt(mod) < 0) {
+            if (Integer.parseInt(mod) > 3 || Integer.parseInt(mod) < 0) {
                 System.out.println(Messages.MODISINCORRECT);
-
+               // mod == null || mod.isEmpty() ||
 
             } else {
                 parametrs[0] = mod;
                 mode = true;
             }
-
+        } catch (Exception e){
+            System.out.println(Messages.MODISINCORRECT);
+            }
         }
 
-        boolean correctKey = false;
-        while (!correctKey) {
-            if (mod.equals("1") || mod.equals("2")) {
-                System.out.println(Messages.SELECTKEY + (Alphabet.ALPHABET.length() - 1));
-                String key = scannerLine.nextLine();
+        if (mod.equals("1") || mod.equals("2")) {
+            boolean correctKey = false;
+            System.out.println(Messages.SELECTKEY + (Alphabet.ALPHABET.length() - 1));
+            while (!correctKey) {
+                try {
 
-                if (key == null || Integer.parseInt(key) < 1 || key.isEmpty() || Integer.parseInt(key) > 93) {
+
+                    String key = scannerLine.nextLine();
+
+                    if (key == null || Integer.parseInt(key) < 1 || key.isEmpty() || Integer.parseInt(key) > 93) {
+                        System.out.println(Messages.INCORRECTKEY);
+
+                    } else {
+                        parametrs[2] = key;
+                        correctKey = true;
+                    }
+
+                } catch (Exception e) {
                     System.out.println(Messages.INCORRECTKEY);
-
-                } else {
-                    parametrs[2] = key;
-                    correctKey = true;
                 }
 
             }
         }
-
         boolean correctInput = false;
         String fileText;
         while (!correctInput) {
@@ -73,14 +81,20 @@ public class ConsoleManager extends InvalidException {
         }
         System.out.println(Messages.INPUTDESTINATIONFILE);
         correctInput = false;
+        String adresToWrite = null;
         while (!correctInput) {
-            String adresToWrite = scannerLine.nextLine();
+            try{
+            adresToWrite = scannerLine.nextLine();
             if (adresToWrite.substring(adresToWrite.length() - 3).equals(".txt")) {
                 System.out.println(Messages.INCORRECTINPUTADRES);
                 continue;
             }
-            parametrs[3] = adresToWrite;
-            correctInput = true;
+                parametrs[3] = adresToWrite;
+                correctInput = true;
+        }
+        catch(Exception e) {
+            System.out.println(Messages.INCORRECTINPUTADRES);
+            }
         }
         return parametrs;
     }

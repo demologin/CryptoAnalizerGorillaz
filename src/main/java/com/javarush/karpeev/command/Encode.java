@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Encode {
-    public static String execute(String text,int key) {
+    public static String execute(String text, int key) {
         ArrayList<Character> sniffedAlphabed = new ArrayList<>();
         sniffedAlphabed.addAll(Alphabet.characterAlphabed);
-        Collections.rotate(sniffedAlphabed,key);
+        Collections.rotate(sniffedAlphabed, key);
         char[] arrayText = text.toCharArray();
         for (int i = 0; i < arrayText.length; i++) {
             if (Alphabet.characterAlphabed.contains(arrayText[i])) {

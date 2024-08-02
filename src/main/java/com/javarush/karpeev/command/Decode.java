@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-
-
 public class Decode {
     public static String[] execute(String text, int key) {
         ArrayList<Character> rotateAr = new ArrayList<>();
@@ -18,10 +16,10 @@ public class Decode {
             if (rotateAr.contains(arrayText[i])) {
                 arrayText[i] = Alphabet.characterAlphabed.get(
                         rotateAr.indexOf(
-                        arrayText[i]));
+                                arrayText[i]));
             }
         }
         Integer keyRes = key;
-        return new String[]{new String(arrayText),keyRes.toString()};
+        return new String[]{new String(arrayText), keyRes.toString()};
     }
 }
