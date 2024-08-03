@@ -1,8 +1,20 @@
 package com.javarush.Grebenshikov.constants;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Constants {
-    private static final String  RU = "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ";
-    private static final String SYMBOLS = "!@#$%^&*()_+-{}[]';:/?><`~.,";
-    private static final String NUMBERS = "0123456789";
-    public static final String ALPHABET = RU+RU.toLowerCase()+SYMBOLS+NUMBERS;
+    public static final String ALPHABET = "ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ!@#$%^&*(){}[]';:_-+=?<>,.йцукенгшщзхъэждлорпавыфячсмитьбю";
+
+
+    public static final Map<Character, Integer> ALPHABET_MAP = new HashMap<>();
+
+
+    static {
+        for (int i = 0; i < ALPHABET.length(); i++) {
+            ALPHABET_MAP.put(ALPHABET.charAt(i), i);
+        }
+    }
 }
+
