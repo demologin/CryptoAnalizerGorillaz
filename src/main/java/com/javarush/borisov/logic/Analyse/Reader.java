@@ -6,8 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Reader {
-    String line;
+
     public String read(Path pathToReadFile){
+        String line="";
         try(BufferedReader reader = Files.newBufferedReader(pathToReadFile)){
             while (reader.ready()){
                 line = line + reader.readLine().toLowerCase();

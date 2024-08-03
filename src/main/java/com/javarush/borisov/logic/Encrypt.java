@@ -32,7 +32,7 @@ public class Encrypt {
            while (reader.ready()) {
 
 
-               String list = reader.readLine();
+               String list = reader.readLine().toLowerCase();
 
                char[] tmp = list.toCharArray();
                for (int j = 0; j < tmp.length; j++) {

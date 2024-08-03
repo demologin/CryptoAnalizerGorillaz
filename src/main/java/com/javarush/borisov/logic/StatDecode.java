@@ -1,12 +1,10 @@
 package com.javarush.borisov.logic;
 // todo заменять известные символы при дешифровке
+import com.javarush.borisov.logic.Analyse.AnalyseDecrypt;
 import com.javarush.borisov.logic.Analyse.CreateAlphabetCast;
 import com.javarush.borisov.logic.Analyse.CreateNewAlphabet;
 import com.javarush.borisov.logic.Analyse.Reader;
 
-import java.io.*;
-
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +43,9 @@ public class StatDecode extends Reader {
         encAlphabet = encAlphabetCast.createAlphabetCast(reader.read(encryptedFile));
 
         CreateNewAlphabet newAlphabet = new CreateNewAlphabet();
-        newAlphabet.createNewAlphabet(dicAlphabet,encAlphabet);
+
+        AnalyseDecrypt decrypt = new AnalyseDecrypt();
+        decrypt.decrypt(encryptedFile,decryptedFile,newAlphabet.createNewAlphabet(dicAlphabet,encAlphabet));
 
     }
 
