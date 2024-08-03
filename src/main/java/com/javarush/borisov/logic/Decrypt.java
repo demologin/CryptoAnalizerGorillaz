@@ -1,5 +1,7 @@
 package com.javarush.borisov.logic;
 
+import com.javarush.borisov.logic.exception.MyException;
+
 import java.io.*;
 
 
@@ -10,7 +12,7 @@ public class Decrypt {
     private final Path pathToFileToDecrypt;
     private final Path pathToDecryptedFile;
     private final int key;
-    private char[] alphabet;
+    private final char[] alphabet;
 
 
     public Decrypt(Path pathToFileToDecrypt, int key, Path pathToDecryptedFile, char[] alphabet) {
@@ -21,11 +23,9 @@ public class Decrypt {
 
     }
 
-    public void runDecrypt() throws FileNotFoundException,RuntimeException {
+    public void runDecrypt()  {
 
-        if (!pathToFileToDecrypt.toFile().exists()) {
-            throw new FileNotFoundException();
-        }
+
         try (InputStream inputStream = new FileInputStream(pathToFileToDecrypt.toFile());
              InputStreamReader reader = new InputStreamReader(inputStream);
              OutputStream outputStream = new FileOutputStream(pathToDecryptedFile.toFile());
@@ -42,7 +42,7 @@ public class Decrypt {
 
             }
         }catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new MyException(e);
         }
     }
 

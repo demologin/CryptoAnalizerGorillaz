@@ -1,11 +1,13 @@
 package com.javarush.borisov.logic;
 
 
+import com.javarush.borisov.logic.exception.MyException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 
-import java.io.FileNotFoundException;
+
 import java.nio.file.*;
 
 
@@ -24,7 +26,7 @@ public class Encrypt {
 
     }
 
-    public void runEncrypt() throws RuntimeException, AccessDeniedException, FileNotFoundException {
+    public void runEncrypt()  {
 
         System.out.println(Messages.ENCODE);
        try( BufferedReader reader = Files.newBufferedReader(pathToFileToEncrypt);
@@ -44,14 +46,15 @@ public class Encrypt {
 
 
            }
-       }catch (AccessDeniedException e){
-
-           throw new AccessDeniedException("");
-       }catch (NoSuchFileException e){
-
-           throw new FileNotFoundException(pathToFileToEncrypt+"\n" + pathToEncryptedFile + Messages.FILE_NOT_FOUND);
        }catch (Exception e){
-           System.out.println(Messages.UNKNOWN_ERROR +e.getMessage());
+                if(e.toString().contains("NoSuchFileException")) {
+                    throw new MyException("Файл не существует", e);
+                } else if (e.toString().contains("AccessDeniedException")) {
+                    throw new MyException("Отказано в доступе", e);
+                }
+
+           throw new MyException("неизвестная ошибка ", e);
+
        }
 
         System.out.println(Messages.ENCODE_FINISH);

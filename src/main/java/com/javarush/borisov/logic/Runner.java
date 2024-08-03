@@ -1,10 +1,8 @@
 package com.javarush.borisov.logic;
 
 
-import java.io.FileNotFoundException;
+import com.javarush.borisov.logic.exception.MyException;
 
-import java.nio.file.AccessDeniedException;
-import java.nio.file.Path;
 
 
 public class Runner {
@@ -28,20 +26,15 @@ public class Runner {
                         ButForce butForce = new ButForce(menu.getPathToGetFile(1), menu.getPathToSaveFile(1));
                         butForce.runBF();
                     }
-                    case 9 -> {
-                        break;
-                    }
+                    case 9 -> {}
 
                     default -> System.out.println(Messages.WRONG_NUMBER);
                 }
-            } catch (AccessDeniedException e) {
+            } catch (MyException e) {
 
-                System.out.println(Messages.ACCESS_DENIED);
+                System.out.println(e.getLocalizedMessage());
 
-            } catch (FileNotFoundException e) {
-
-                System.out.println(Messages.FILE_NOT_FOUND);
-            } catch (RuntimeException e) {
+            } catch (Exception e) {
 
                 System.out.println(Messages.UNKNOWN_ERROR +
                         e.getLocalizedMessage().substring(e.getLocalizedMessage().indexOf(':') + 1));
