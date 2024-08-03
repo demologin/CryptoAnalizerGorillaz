@@ -4,7 +4,6 @@ import com.javarush.shosafoev.command.Encode;
 import com.javarush.shosafoev.controllers.File;
 import com.javarush.shosafoev.controllers.Map;
 import com.javarush.shosafoev.exceptions.FileNotExistsException;
-import com.javarush.shosafoev.exceptions.WrongInputException;
 
 import java.util.Scanner;
 
@@ -17,9 +16,9 @@ public class DataInputOutput {
 
 
     public void dataInputOutput(String operationId) {
-        String firstNameOfFile = "";
-        String secondNameOfFile = "";
-        String shift = "";
+        String firstNameOfFile;
+        String secondNameOfFile;
+        String shift;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please input full path and name of 1 file: ");
         firstNameOfFile = scanner.nextLine();
