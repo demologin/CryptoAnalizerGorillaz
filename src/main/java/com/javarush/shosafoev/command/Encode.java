@@ -21,7 +21,7 @@ public class Encode {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char symbol = text.charAt(i);
-            int orderInAlphabet = alphabet.getIndexByValue(symbol);
+            int orderInAlphabet = alphabet.getIndexByValue();
             char newSymbol;
             // find symbol in alphabet. If it doesn't exist then skip it
             if (!alphabet.isSymbolExists(symbol)) {
@@ -29,7 +29,7 @@ public class Encode {
             }
             // * case 1 *
             if ((orderInAlphabet + shift) <= alphabet.length() - 1) {
-                newSymbol = alphabet.getSymbolByIndex(orderInAlphabet + shift);
+                newSymbol = alphabet.getSymbolByIndex();
             }
             // * case 2 *
             else {
@@ -44,7 +44,7 @@ public class Encode {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char symbol = text.charAt(i);
-            int orderInAlphabet = alphabet.getIndexByValue(symbol);
+            int orderInAlphabet = alphabet.getIndexByValue();
             char newSymbol;
             // find symbol in alphabet. If it doesn't exist then skip it
             if (!alphabet.isSymbolExists(symbol)) {
@@ -52,7 +52,7 @@ public class Encode {
             }
             // * case 1 *
             if ((orderInAlphabet - shift) >= 0) {
-                newSymbol = alphabet.getSymbolByIndex(orderInAlphabet - shift);
+                newSymbol = alphabet.getSymbolByIndex();
             }
             // * case 2 *
             else {
