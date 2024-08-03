@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Cipher {
+public class Cypher {
 
     public void encrypt(String inputFile, String outputFile, int key) throws IOException {
         Path from = Paths.get(inputFile);

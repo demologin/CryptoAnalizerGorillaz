@@ -6,44 +6,59 @@ import java.util.Scanner;
 public class MainApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Cipher cipher = new Cipher();
+        Cypher cypher = new Cypher();
 
-        System.out.println("Выберите действие:");
-        System.out.println("""
-                1. Шифрование
-                2. Расшифровка с ключом
-                0. Выход""");
+        final String FILE_NAME_FOR_READING = "Введите название файла для чтения:";
+        final String FILE_NAME_FOR_WRITNG = "Введите название файла для записи:";
+        final String KEY_FOR_CYPHER = "Введите ключ для шифрования:";
+        String userNumber;
 
-        int userNumber = scanner.nextInt();
-        if (userNumber == 1) {
-            System.out.println("Введите название файла для чтения:");
-            String inputFileName = scanner.nextLine();
+        while (true) {
+            System.out.println("Выберите действие:");
+            System.out.println("""
+                    1. Шифрование
+                    2. Расшифровка с ключом
+                    0. Выход""");
 
-            System.out.println("Введите название файла для записи:");
-            String outputFileName = scanner.nextLine();
-
-            System.out.println("Введите ключ для шифрования:");
-            int keyValue = scanner.nextInt();
-
-            try {
-                cipher.encrypt(inputFileName, outputFileName, keyValue);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            userNumber = scanner.nextLine();
+            if (userNumber.equalsIgnoreCase("exit")) {
+                break;
             }
-        } else if (userNumber == 2) {
-            System.out.println("Введите название файла для чтения:");
-            String inputFileName = scanner.nextLine();
 
-            System.out.println("Введите название файла для записи:");
-            String outputFileName = scanner.nextLine();
+            int userNumber1 = Integer.parseInt(userNumber);
 
-            System.out.println("Введите ключ для шифрования:");
-            int keyValue = scanner.nextInt();
+            if (userNumber1 == 1) {
+                System.out.println(FILE_NAME_FOR_READING);
+                String inputFileName = scanner.nextLine();
 
-            try {
-                cipher.decrypt(inputFileName, outputFileName, keyValue);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(FILE_NAME_FOR_WRITNG);
+                String outputFileName = scanner.nextLine();
+
+                System.out.println(KEY_FOR_CYPHER);
+                int keyValue = scanner.nextInt();
+
+                try {
+                    cypher.encrypt(inputFileName, outputFileName, keyValue);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (userNumber1 == 2) {
+                System.out.println(FILE_NAME_FOR_READING);
+                String inputFileName = scanner.nextLine();
+
+                System.out.println(FILE_NAME_FOR_WRITNG);
+                String outputFileName = scanner.nextLine();
+
+                System.out.println(KEY_FOR_CYPHER);
+                int keyValue = scanner.nextInt();
+
+                try {
+                    cypher.decrypt(inputFileName, outputFileName, keyValue);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (userNumber1 == 0) {
+                break;
             }
         }
     }
