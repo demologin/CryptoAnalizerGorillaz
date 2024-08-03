@@ -53,7 +53,7 @@ public class DataInputOutput {
             File fileManager = new File();
             String text = fileManager.readFile(firstNameOfFile);
             // coding text
-            String encryptText = encoderDecoder.decodeText(text, Integer.parseInt(shift));
+            String encryptText = encoderDecoder.decodeText(text);
             // write codding text to second file
             fileManager.writeFile(encryptText, secondNameOfFile);
         }

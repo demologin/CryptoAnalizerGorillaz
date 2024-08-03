@@ -4,6 +4,8 @@ import com.javarush.shosafoev.constant.Alphabet;
 
 public class Encode {
     Alphabet alphabet;
+    private String text;
+    private int shift;
 
     public Encode() {
         alphabet = new Alphabet();
@@ -40,6 +42,8 @@ public class Encode {
         return builder.toString();
     }
     public String decryptText(String text, int shift) {
+        this.text = text;
+        this.shift = shift;
         // compare char in text and char in alphabet
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
@@ -63,7 +67,7 @@ public class Encode {
         return builder.toString();
     }
 
-    public String decodeText(String text, int i) {
+    public String decodeText(String text) {
 
         return text;
     }
