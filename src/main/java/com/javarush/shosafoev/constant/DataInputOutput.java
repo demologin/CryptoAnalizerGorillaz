@@ -23,7 +23,7 @@ public class DataInputOutput {
         System.out.print("Please input full path and name of 1 file: ");
         firstNameOfFile = scanner.nextLine();
         // check first file ---------------------------------------
-        if (!Map.isFileExists(firstNameOfFile)) {
+        if (Map.isFileExists(firstNameOfFile)) {
             throw new FileNotExistsException("The file is not exist!");
         }
 

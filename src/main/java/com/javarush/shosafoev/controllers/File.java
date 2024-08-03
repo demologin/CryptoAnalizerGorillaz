@@ -46,7 +46,7 @@ public class File {
     public void writeFile(String content, String filePath) {
         Map validator = new Map();
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(filePath))) {
-            if (!validator.isFileExists(filePath)) {
+            if (validator.isFileExists(filePath)) {
                 Files.createFile(Path.of(filePath));
             }
             writer.write(content);

@@ -10,7 +10,7 @@ import java.nio.file.Path;
 public class Map {
     public void checkCorrectFilename(String filename) {
         try {
-            if (!isFileExists(filename)) {
+            if (isFileExists(filename)) {
                 Path path = Path.of(filename);
                 Files.createFile(path);
             }
@@ -26,7 +26,7 @@ public class Map {
      * @return true - if file exists
      */
     public boolean isFileExists(String filename) {
-        return Files.exists(Path.of(filename));
+        return !Files.exists(Path.of(filename));
     }
 
     /**
