@@ -2,10 +2,13 @@ package com.javarush.shosafoev.command;
 
 import com.javarush.shosafoev.constant.Alphabet;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
 public class Encode {
     Alphabet alphabet;
-    private String text;
-    private int shift;
+    private final AtomicReference<String> text = new AtomicReference<String>();
+    private final AtomicInteger shift = new AtomicInteger();
 
     public Encode() {
         alphabet = new Alphabet();
@@ -41,9 +44,14 @@ public class Encode {
         }
         return builder.toString();
     }
+
+    public String decryptText() {
+        return decryptText(null, 0);
+    }
+
     public String decryptText(String text, int shift) {
-        this.text = text;
-        this.shift = shift;
+        this.text.set(text);
+        this.shift.set(shift);
         // compare char in text and char in alphabet
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
@@ -70,5 +78,17 @@ public class Encode {
     public String decodeText(String text) {
 
         return text;
+    }
+
+    public String getText() {
+        return text.get();
+    }
+
+    public void setText(String text) {
+        this.text.set(text);
+    }
+
+    public void setShift(int shift) {
+        this.shift.set(shift);
     }
 }
