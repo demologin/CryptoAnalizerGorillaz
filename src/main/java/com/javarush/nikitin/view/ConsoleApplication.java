@@ -19,7 +19,6 @@ public class ConsoleApplication {
             dataController.setDataContainer(data);
             dataController.runProcessing();
         } catch (ApplicationException e) {
-            e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }
