@@ -56,7 +56,7 @@ public class CommandMethods {
         return true;
     }
 
-    public static void exit(Scanner input) {
+    public static void exit() {
         System.out.println("Программа завершила работу");
     }
 

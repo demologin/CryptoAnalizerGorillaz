@@ -29,7 +29,7 @@ public class App {
                 CommandMethods.decode(input);
                 break;
             } else if (command.toUpperCase().equals(exit.toString()) || command.equals("3")) {
-                CommandMethods.exit(input);
+                CommandMethods.exit();
                 break;
             } else {
                 System.out.println("Введите корректный номер/название команды");
