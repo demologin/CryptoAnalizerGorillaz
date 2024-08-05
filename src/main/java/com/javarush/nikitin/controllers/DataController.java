@@ -17,7 +17,7 @@ public class DataController {
     }
 
     public void runProcessing() {
-        validateData();
+        Validator.validateData(dataContainer);
         createCaesarAlgorithm();
         processingData();
     }
@@ -35,18 +35,5 @@ public class DataController {
         };
     }
 
-    private void validateData() {
-        switch (dataContainer.type()) {
-            case ENCRYPT, DECRYPT -> {
-                Validator.isValidPath(dataContainer.source());
-                Validator.isValidPath(dataContainer.destination());
-                Validator.isValidKey(dataContainer.key());
-            }
-            case BRUTE_FORCE -> {
-                Validator.isValidPath(dataContainer.source());
-                Validator.isValidPath(dataContainer.destination());
-                Validator.isValidPath(dataContainer.dictionary());
-            }
-        }
-    }
+
 }
