@@ -11,9 +11,12 @@ public class Runner {
 
     public void run(MainMenu menu, String[] param) {
         int choice = 0;
-
+        if (param.length == 0) {
+            param = new String[]{null, null,null,null};
+        }
         while (choice != 9) {
-            if (param.length ==0) {
+            if (param[0]==null) {
+
                 choice = menu.getCommand();
             }else {
                 Messages mes = Messages.valueOf(param[0].toUpperCase());
@@ -38,14 +41,24 @@ public class Runner {
 
                     default -> System.out.println(Messages.WRONG_NUMBER);
                 }
+                if (param[0] != null ){
+                    break;
+                }
             } catch (MyException e) {
 
                 System.out.println(e.getLocalizedMessage());
+                if (param[0] != null ){
+                    break;
+                }
 
             } catch (Exception e) {
+                e.printStackTrace();
 
                 System.out.println(Messages.UNKNOWN_ERROR +
                         e.getLocalizedMessage().substring(e.getLocalizedMessage().indexOf(':') + 1));
+                if (param[0] != null ){
+                    break;
+                }
             }
 
         }
