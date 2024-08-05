@@ -3,30 +3,38 @@ package com.javarush.borisov.logic;
 
 import com.javarush.borisov.logic.exception.MyException;
 
+import java.util.Arrays;
 
 
 public class Runner {
 
 
-    public void run(MainMenu menu) {
+    public void run(MainMenu menu, String[] param) {
         int choice = 0;
+
         while (choice != 9) {
-            choice = menu.getCommand();
+            if (param.length ==0) {
+                choice = menu.getCommand();
+            }else {
+                Messages mes = Messages.valueOf(param[0].toUpperCase());
+
+                choice = mes.ordinal();
+            }
             try {
                 switch (choice) {
                     case 1 -> {
-                        Encrypt encrypt = new Encrypt(menu.getPathToGetFile(), menu.getKey(), menu.getPathToSaveFile());
+                        Encrypt encrypt = new Encrypt(menu.getPathToGetFile(param[1]), menu.getKey(param[2]), menu.getPathToSaveFile(param[3]));
                         encrypt.runEncrypt();
                     }
                     case 2 -> {
-                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(), menu.getPathToSaveFile(1), Const.ALPHABET);
+                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(param[2]), menu.getPathToSaveFile(1,param[3]), Const.ALPHABET);
                         decrypt.runDecrypt();
                     }
                     case 3 -> {
-                        ButForce butForce = new ButForce(menu.getPathToGetFile(1), menu.getPathToSaveFile(1));
+                        ButForce butForce = new ButForce(menu.getPathToGetFile(1), menu.getPathToSaveFile(1,param[3]));
                         butForce.runBF();
                     }
-                    case 9 -> {}
+
 
                     default -> System.out.println(Messages.WRONG_NUMBER);
                 }

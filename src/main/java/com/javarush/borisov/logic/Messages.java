@@ -1,6 +1,9 @@
 package com.javarush.borisov.logic;
 
 public enum Messages {
+    ENCRYPT ("Шифрование"),
+    DECRYPT ("Дешфрование"),
+    BRUTFORSE("Брутфорс"),
     GREETINGS ("\nВыберете действие"),
     ACCESS_DENIED ("\nне могу создать файл (отказано в доступе), давай по новой\n"),
     FILE_NOT_FOUND ("\nфайл по указанному пути отсутсвует, давай по новой\n"),

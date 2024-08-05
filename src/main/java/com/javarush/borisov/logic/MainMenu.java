@@ -33,17 +33,21 @@ public  class MainMenu {
         return choice;
 
     }
-    public  Path getPathToGetFile(){
-        System.out.println(Messages.ENTER_PATH_TO_FILE);
-        String path = scan.nextLine();
-        if (path.isEmpty()){
-            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
-            tmp = tmp.relativize(Path.of("borisov/files/text.txt")).toAbsolutePath().normalize();
-            return tmp;
+    public  Path getPathToGetFile(String param){
+        if(param == null) {
+            System.out.println(Messages.ENTER_PATH_TO_FILE);
+            String path = scan.nextLine();
+            if (path.isEmpty()) {
+                Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+                tmp = tmp.relativize(Path.of("borisov/files/text.txt")).toAbsolutePath().normalize();
+                return tmp;
 
+            }
+
+            return Path.of(path);
+        }else{
+            return Path.of(param);
         }
-
-        return Path.of(path);
     }
 
     public  Path getPathToGetFile(int a){
@@ -59,40 +63,51 @@ public  class MainMenu {
         return Path.of(path);
     }
 
-    public int getKey(){
-        System.out.println(Messages.ENTER_KEY);
-        String line = scan.nextLine();
-        try {
-            return Integer.parseInt(line);
-        }catch (Exception e) {
-            return line.length();
+    public int getKey(String param) {
+        if(param == null) {
+            System.out.println(Messages.ENTER_KEY);
+            String line = scan.nextLine();
+            try {
+                return Integer.parseInt(line);
+            } catch (Exception e) {
+                return line.length();
+            }
+        }else {
+            return Integer.parseInt(param);
         }
     }
-    public Path getPathToSaveFile(){
-        System.out.println(Messages.ENTER_PATH_TO_SAVE);
-        String path = scan.nextLine();
-        if (path.isEmpty()){
-            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
-            tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
-            return tmp;
+    public Path getPathToSaveFile(String param){
+        if (param== null) {
+            System.out.println(Messages.ENTER_PATH_TO_SAVE);
+            String path = scan.nextLine();
+            if (path.isEmpty()) {
+                Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+                tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
+                return tmp;
 
+            }
+
+
+            return Path.of(path);
+        }else {
+            return Path.of(param);
         }
-
-
-        return Path.of(path);
     }
-    public Path getPathToSaveFile(int a){
-        System.out.println(Messages.ENTER_PATH_TO_SAVE);
-        String path = scan.nextLine();
-        if (path.isEmpty()){
-            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
-            tmp = tmp.relativize(Path.of("borisov/files/decrypted.txt")).toAbsolutePath().normalize();
-            return tmp;
+    public Path getPathToSaveFile(int a, String param){
+        if(param == null) {
+            System.out.println(Messages.ENTER_PATH_TO_SAVE);
+            String path = scan.nextLine();
+            if (path.isEmpty()) {
+                Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+                tmp = tmp.relativize(Path.of("borisov/files/decrypted.txt")).toAbsolutePath().normalize();
+                return tmp;
 
+            }
+
+
+            return Path.of(path);
         }
-
-
-        return Path.of(path);
+        else {return Path.of(param);}
     }
 
 

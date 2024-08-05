@@ -13,7 +13,7 @@ public class console {
         MainMenu menu = new MainMenu(scan);
         Runner runner = new Runner();
 
-        runner.run(menu);
+        runner.run(menu,args);
 
 
 
