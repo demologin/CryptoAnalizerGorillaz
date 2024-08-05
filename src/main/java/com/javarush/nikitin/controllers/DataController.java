@@ -5,7 +5,6 @@ import com.javarush.nikitin.exceptions.ApplicationException;
 import com.javarush.nikitin.useCase.*;
 import com.javarush.nikitin.util.Validator;
 
-
 public class DataController {
     private DataContainer dataContainer;
     private CryptologistCaesar cryptologist;
