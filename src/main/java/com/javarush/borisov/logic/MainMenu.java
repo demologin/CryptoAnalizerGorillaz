@@ -50,17 +50,21 @@ public  class MainMenu {
         }
     }
 
-    public  Path getPathToGetFile(int a){
-        System.out.println(Messages.ENTER_PATH_TO_FILE);
-        String path = scan.nextLine();
-        if (path.isEmpty()){
-            Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
-            tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
-            return tmp;
+    public  Path getPathToGetFile(int a, String param){
+        if(param == null) {
+            System.out.println(Messages.ENTER_PATH_TO_FILE);
+            String path = scan.nextLine();
+            if (path.isEmpty()) {
+                Path tmp = Path.of((Thread.currentThread().getStackTrace()[1].getClassName()));
+                tmp = tmp.relativize(Path.of("borisov/files/encrypted.txt")).toAbsolutePath().normalize();
+                return tmp;
 
+            }
+
+            return Path.of(path);
+        }else {
+            return Path.of(param);
         }
-
-        return Path.of(path);
     }
 
     public int getKey(String param) {

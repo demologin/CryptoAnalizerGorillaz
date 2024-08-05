@@ -30,11 +30,11 @@ public class Runner {
                         encrypt.runEncrypt();
                     }
                     case 2 -> {
-                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1), menu.getKey(param[2]), menu.getPathToSaveFile(1,param[3]), Const.ALPHABET);
+                        Decrypt decrypt = new Decrypt(menu.getPathToGetFile(1,param[1]), menu.getKey(param[2]), menu.getPathToSaveFile(1,param[3]), Const.ALPHABET);
                         decrypt.runDecrypt();
                     }
                     case 3 -> {
-                        ButForce butForce = new ButForce(menu.getPathToGetFile(1), menu.getPathToSaveFile(1,param[3]));
+                        ButForce butForce = new ButForce(menu.getPathToGetFile(1,param[1]), menu.getPathToSaveFile(1,param[3]));
                         butForce.runBF();
                     }
 
