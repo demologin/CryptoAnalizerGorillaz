@@ -33,7 +33,8 @@ public class Analysis implements Action {
                     isMeaningful(shiftedText, FrequencyConstants.ENGLISH_FREQUENCY)) {
                 try {
                     FileReadWrite.writeFile(outputFilePath, shiftedText);
-                    return new Result("Удалось расшифровать текст. Сдвиг: " + shift, ResultCode.OK);
+                    System.out.println("Удалось расшифровать текст. Возможный двиг: " + shift);
+                    return new Result(new String(shiftedText), ResultCode.OK);
                 } catch (IOException e) {
                     return new Result("Ошибка записи в файл", ResultCode.ERROR);
                 }

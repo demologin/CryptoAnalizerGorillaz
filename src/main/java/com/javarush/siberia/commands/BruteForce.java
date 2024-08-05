@@ -57,8 +57,8 @@ public class BruteForce implements Action{
             } catch (IOException e) {
                 return new Result("Ошибка записи в файл", ResultCode.ERROR);
             }
-            System.out.println("Взломанный текст найден и сохранён с ключом сдвига: " + foundShift);
-            return new Result("Удалось взломать ключ сдвига. Текущий сдвиг: " + foundShift, ResultCode.OK);
+            System.out.println("Взломанный текст найден и сохранён с ключом сдвига: " + foundShift); // todo переписать выводы
+            return new Result(new String(shiftedText), ResultCode.OK);
         } else {
             return new Result("Не удалось понять шифрованный текст, я всего лишь алгоритм. Прикрути мне ИИ!", ResultCode.ERROR);
         }
