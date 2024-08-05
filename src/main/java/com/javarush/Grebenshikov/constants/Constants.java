@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Constants {
-    public static final String ALPHABET = "ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ!@#$%^&*(){}[]';:_-+=?<>,.йцукенгшщзхъэждлорпавыфячсмитьбю";
+    public static final String ALPHABET = "ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ!@#$%^&*(){}[]';:_-+=?<>,.йцукенгшщзхъэждлорпавыфячсмитьбюё";
 
 
     public static final Map<Character, Integer> ALPHABET_MAP = new HashMap<>();
