@@ -19,12 +19,8 @@ public class DataController {
     public void runProcessing() {
         Validator.validateData(dataContainer);
         createCaesarAlgorithm();
-        processingData();
-    }
-
-    private void processingData() {
         DataProcessor processor = new DataProcessor(cryptologist);
-        processor.push(dataContainer);
+        processor.executeDataOperation(dataContainer);
     }
 
     private void createCaesarAlgorithm() {

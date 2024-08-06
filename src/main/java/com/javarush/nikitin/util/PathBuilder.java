@@ -18,4 +18,12 @@ public class PathBuilder {
                 ? path
                 : Path.of(DEFAULT_TEXT_FOLDER + fileName);
     }
+
+    public static String buildPathAsString(String fileName) {
+        Path path = Path.of(fileName);
+        Path newPath = path.isAbsolute()
+                ? path
+                : Path.of(DEFAULT_TEXT_FOLDER + fileName);
+        return newPath.toString();
+    }
 }

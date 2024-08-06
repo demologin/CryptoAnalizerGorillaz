@@ -16,20 +16,20 @@ public class DataProcessor {
         this.cryptologist = cryptologist;
     }
 
-    public void push(DataContainer data) {
+    public void executeDataOperation(DataContainer data) {
         Path pathSource = PathBuilder.buildPath(data.source());
         Path pathDestination = PathBuilder.buildPath(data.destination());
 
         if (data.type() == Operation.BRUTE_FORCE) {
             Path pathDictionary = PathBuilder.buildPath(data.dictionary());
             int bestKey = ((BruteForceCaesar) cryptologist).findBestKey(pathSource, pathDictionary);
-            pushData(pathSource, pathDestination, bestKey);
+            writeEncryptedData(pathSource, pathDestination, bestKey);
         } else {
-            pushData(pathSource, pathDestination, data.key());
+            writeEncryptedData(pathSource, pathDestination, data.key());
         }
     }
 
-    private void pushData(Path pathSource, Path pathDest, int key) {
+    private void writeEncryptedData(Path pathSource, Path pathDest, int key) {
         try (var reader = Files.newBufferedReader(pathSource);
              var writer = Files.newBufferedWriter(pathDest)) {
 
