@@ -16,15 +16,15 @@ public class Cipher {
     public static void encrypt() {
         try  {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите путь к исходному файлу");
+            System.out.println("Enter the path to the source file");
             Path fileInputStream = Path.of(scanner.nextLine());
             while (!Files.exists(fileInputStream)){
-                System.out.println("Файл не существует.\nВведите путь к исходному файлу");
+                System.out.println("The file does not exist.\nEnter the path to the source file.");
                 fileInputStream = Path.of(scanner.nextLine());
             }
-            System.out.println("Введите путь к файлу для записи");
+            System.out.println("Enter the path to the file to write to");
             Path fileOutputStream = Path.of(scanner.nextLine());
-            System.out.println("Введите ключ");
+            System.out.println("Enter the key");
             int key = scanner.nextInt();
             if (key > ALPHABET.length()) {
                 key = key % ALPHABET.length();
@@ -57,15 +57,15 @@ public class Cipher {
     public static void decrypt() {
         try  {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите путь к исходному файлу");
+            System.out.println("Enter the path to the source file");
             Path fileInputStream = Path.of(scanner.nextLine());
             while (!Files.exists(fileInputStream)){
-                System.out.println("Файл не существует.\nВведите путь к исходному файлу");
+                System.out.println("The file does not exist.\nEnter the path to the source file.");
                 fileInputStream = Path.of(scanner.nextLine());
             }
-            System.out.println("Введите путь к файлу для записи");
+            System.out.println("Enter the path to the file to write to");
             Path fileOutputStream = Path.of(scanner.nextLine());
-            System.out.println("Введите ключ");
+            System.out.println("Enter the key");
             int key = scanner.nextInt();
             if (key > ALPHABET.length()) {
                 key = key % ALPHABET.length();
