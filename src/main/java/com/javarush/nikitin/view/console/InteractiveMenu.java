@@ -1,4 +1,4 @@
-package com.javarush.nikitin.view;
+package com.javarush.nikitin.view.console;
 
 import com.javarush.nikitin.constants.InputParameter;
 import com.javarush.nikitin.constants.Operation;

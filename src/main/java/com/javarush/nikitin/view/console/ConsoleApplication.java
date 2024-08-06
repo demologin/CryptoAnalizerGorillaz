@@ -1,4 +1,4 @@
-package com.javarush.nikitin.view;
+package com.javarush.nikitin.view.console;
 
 import com.javarush.nikitin.controllers.DataController;
 import com.javarush.nikitin.entity.DataContainer;

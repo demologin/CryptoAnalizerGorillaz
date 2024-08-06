@@ -1,8 +1,8 @@
 package com.javarush.nikitin;
 
 import com.javarush.nikitin.controllers.DataController;
-import com.javarush.nikitin.view.ConsoleApplication;
-import com.javarush.nikitin.view.InteractiveMenu;
+import com.javarush.nikitin.view.console.ConsoleApplication;
+import com.javarush.nikitin.view.console.InteractiveMenu;
 
 import java.util.Scanner;
 
