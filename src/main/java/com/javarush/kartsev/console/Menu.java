@@ -5,6 +5,7 @@ import java.util.Scanner;
 import static com.javarush.kartsev.console.Messages.*;
 
 public class Menu {
+
     private final Scanner scanner;
 
     public Menu(Scanner scanner) {

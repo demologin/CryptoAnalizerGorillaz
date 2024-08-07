@@ -1,7 +1,5 @@
 package com.javarush.kartsev.entity;
 
-import com.javarush.kartsev.entity.ResultCode;
-
 public class Result {
     public final ResultCode resultCode;
     public final String message;

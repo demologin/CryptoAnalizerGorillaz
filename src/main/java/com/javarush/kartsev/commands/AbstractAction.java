@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public abstract class AbstractAction {
+public abstract class AbstractAction implements Action{
     public Result copyWithKey(String sourceTextFile, String targetTextFile, int key) {
         Path source = PathBuilder.get(sourceTextFile);
         Path target = PathBuilder.get(targetTextFile);
@@ -40,5 +40,4 @@ public abstract class AbstractAction {
         return new Result(ResultCode.OK, targetTextFile);
     }
 
-    public abstract Result execute(String[] parameters);
 }

@@ -8,6 +8,7 @@ import com.javarush.kartsev.entity.ResultCode;
 import java.util.Arrays;
 
 public class ConsoleApp {
+
     private final MainController mainController;
     private final Menu menu;
 
@@ -38,10 +39,10 @@ public class ConsoleApp {
     private void print(Result result) {
         String message = switch (result.resultCode) {
             case OK -> String.format(
-                    com.javarush.khmelov.view.console.Messages.OK_FORMAT, result.message
+                    Messages.OK_FORMAT, result.message
             );
             case ERROR -> String.format(
-                    com.javarush.khmelov.view.console.Messages.ERR_FORMAT, result.message
+                    Messages.ERR_FORMAT, result.message
             );
         };
         System.out.println(message);

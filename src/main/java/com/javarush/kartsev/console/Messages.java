@@ -1,28 +1,28 @@
 package com.javarush.kartsev.console;
 
-import com.javarush.khmelov.constant.Const;
+import com.javarush.kartsev.constant.Constans;
 
 public interface Messages {
     String[][][] QUESTIONS = new String[][][]{
             {
-                    {Const.ENCODE},
+                    {Constans.ENCODE},
                     {"Enter source (full path OR only filename OR Enter for text.txt) :", "text.txt"},
                     {"Enter destination (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter key (int number OR Enter for key=1) :", "1"},
             },
             {
-                    {Const.DECODE},
+                    {Constans.DECODE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter destination (full path OR only filename OR Enter for decrypted.txt) :", "decrypted.txt"},
                     {"Enter key (int number OR Enter for key=1) :", "1"},
             },
             {
-                    {Const.BRUTEFORCE},
+                    {Constans.BRUTEFORCE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter destination (full path OR only filename OR Enter for bruteforce.txt) :", "bruteforce.txt"},
             },
             {
-                    {Const.ANALYZE},
+                    {Constans.ANALYZE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter dictionary  (full path OR only filename OR Enter for dict.txt) :", "dict.txt"},
                     {"Enter destination (full path OR only filename OR Enter for analyzed.txt) :", "analyzed.txt"},
