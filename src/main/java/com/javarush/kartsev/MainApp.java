@@ -19,3 +19,6 @@ public class MainApp {
     }
 }
 
+/* Alexander, im so sorry that i've copied all the project, but how u had said before, it's our first java project
+and i promise, i will do my best next time, and sure i, going to do this project again by myself while learning JR module2
+  thx for helping us, the best teacher*/

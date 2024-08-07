@@ -2,7 +2,7 @@ package com.javarush.khmelov.view.console;
 
 import com.javarush.khmelov.constant.Const;
 
-public interface Messages {
+ interface Messages {
     String[][][] QUESTIONS = new String[][][]{
             {
                     {Const.ENCODE},
