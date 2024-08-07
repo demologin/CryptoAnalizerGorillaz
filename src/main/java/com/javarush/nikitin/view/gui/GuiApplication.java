@@ -15,10 +15,6 @@ public class GuiApplication {
     private DataContainer dataContainer;
 
     private Operation selectOperation;
-    private String source;
-    private String destination;
-    private String dictionary;
-    private int key;
 
     private JFrame frame;
     private Container contentPane;
@@ -40,18 +36,13 @@ public class GuiApplication {
     }
 
     public void initialize() {
-
         initializeUI();
         submitButton.addActionListener(e -> {
             try {
-                source = sourceField.getText();
-                destination = destinationField.getText();
-                dictionary = dictionaryField.getText();
-                key = Integer.parseInt(keyField.getText());
-
-                getUserAllResponse(selectOperation, source, destination, dictionary, key);
+                getUserAllResponse();
                 dataController.setDataContainer(dataContainer);
                 dataController.runProcessing();
+
             } catch (ApplicationException ex) {
                 JOptionPane.showMessageDialog(frame, ex.getMessage());
             }
@@ -59,28 +50,40 @@ public class GuiApplication {
     }
 
     private void initializeUI() {
-
         frame = new JFrame("Crypto_Analizer_Gorillaz");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
 
         contentPane = frame.getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-        createPanels();
 
-        createFields();
-        createRadioButtons();
-        submitButton = new JButton("Submit");
-        panelInput.add(submitButton);
-        contentPane.add(panelInput);
-        contentPane.add(panelOperation);
-
+        fillFrame();
+        addRadioButtonsListener();
         frame.pack();
         frame.setVisible(true);
     }
 
-    private void getUserAllResponse(Operation selectOperation, String source, String destination, String dictionary, int key) {
+    private void fillFrame() {
+        createPanels();
+        createFields();
+        createRadioButtons();
+        createButtons();
+
+        contentPane.add(panelInput);
+        contentPane.add(panelOperation);
+    }
+
+    private void createButtons() {
+        submitButton = new JButton("Submit");
+        panelInput.add(submitButton);
+    }
+
+    private void getUserAllResponse() {
+        String source = sourceField.getText();
+        String destination = destinationField.getText();
+        String dictionary = dictionaryField.getText();
+        int key = Integer.parseInt(keyField.getText());
+
         dataContainer = new DataContainer(selectOperation, source, destination, dictionary, key);
     }
 
@@ -120,12 +123,12 @@ public class GuiApplication {
         buttonGroup.add(radioButtonBruteForce);
 
         panelOperation.add(new JLabel("Operation:"));
-
         panelOperation.add(radioButtonEncrypt);
         panelOperation.add(radioButtonDecrypt);
         panelOperation.add(radioButtonBruteForce);
+    }
 
-
+    private void addRadioButtonsListener() {
         radioButtonEncrypt.addActionListener(e -> {
             updateInputFields(radioButtonEncrypt.getText());
         });
@@ -141,16 +144,29 @@ public class GuiApplication {
     private void updateInputFields(String OperationType) {
         selectOperation = Operation.valueOf(OperationType);
 
-        String sourcePath = InputParameter.SOURCE.getDefaultValue(selectOperation);
+        String sourcePath = InputParameter.SOURCE
+                .getDefaultValue(selectOperation);
+        String destination = InputParameter.DESTINATION
+                .getDefaultValue(selectOperation);
+        String dictionary = InputParameter.DICTIONARY
+                .getDefaultValue(selectOperation);
+        String key = InputParameter.KEY
+                .getDefaultValue(selectOperation);
+
         sourceField.setText(PathBuilder.buildPathAsString(sourcePath));
-
-        String destination = InputParameter.DESTINATION.getDefaultValue(selectOperation);
         destinationField.setText(PathBuilder.buildPathAsString(destination));
-
-        String dictionary = InputParameter.DICTIONARY.getDefaultValue(selectOperation);
         dictionaryField.setText(PathBuilder.buildPathAsString(dictionary));
-
-        String key = InputParameter.KEY.getDefaultValue(selectOperation);
         keyField.setText(key);
+
+        switch (selectOperation) {
+            case ENCRYPT, DECRYPT -> {
+                dictionaryField.setEnabled(false);
+                keyField.setEnabled(true);
+            }
+            case BRUTE_FORCE -> {
+                dictionaryField.setEnabled(true);
+                keyField.setEnabled(false);
+            }
+        }
     }
 }
