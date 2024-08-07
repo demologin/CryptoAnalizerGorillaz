@@ -1,4 +1,4 @@
-package com.javarush.khmelov.view.console;
+package com.javarush.kartsev.console;
 
 import com.javarush.khmelov.constant.Const;
 
