@@ -24,8 +24,8 @@ public class InteractiveMenu {
     }
 
     DataContainer executeMenu() {
-        printMessage(MENU);
-        return getUserAllResponse();
+        Operation type = getTypeOperation();
+        return getUserAllResponse(type);
     }
 
     private void printMessage(String message) {
@@ -38,6 +38,7 @@ public class InteractiveMenu {
 
     private Operation getTypeOperation() {
         while (true) {
+            printMessage(MENU);
             String scanLine = scanner.nextLine();
             if (scanLine.matches(PATTERN_COMMANDS_MENU)) {
                 int number = Integer.parseInt(scanLine);
@@ -47,12 +48,10 @@ public class InteractiveMenu {
                 return Operation.getInstance(number);
             }
             printMessage(ENTER_CORRECT_COMMAND);
-            printMessage(MENU);
         }
     }
 
-    private DataContainer getUserAllResponse() {
-        Operation type = getTypeOperation();
+    private DataContainer getUserAllResponse(Operation type) {
         return switch (type) {
             case ENCRYPT, DECRYPT -> new DataContainer(type,
                     getInputData(type, InputParameter.SOURCE),

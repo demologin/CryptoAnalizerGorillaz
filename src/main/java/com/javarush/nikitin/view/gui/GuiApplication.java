@@ -12,8 +12,6 @@ import java.awt.*;
 
 public class GuiApplication {
     private final DataController dataController;
-    private DataContainer dataContainer;
-
     private Operation selectOperation;
 
     private JFrame frame;
@@ -37,12 +35,14 @@ public class GuiApplication {
 
     public void initialize() {
         initializeUI();
+
         submitButton.addActionListener(e -> {
             try {
-                getUserAllResponse();
+                DataContainer dataContainer = getUserAllResponse();
                 dataController.setDataContainer(dataContainer);
                 dataController.runProcessing();
 
+                JOptionPane.showMessageDialog(frame, "Task completed");
             } catch (ApplicationException ex) {
                 JOptionPane.showMessageDialog(frame, ex.getMessage());
             }
@@ -53,7 +53,6 @@ public class GuiApplication {
         frame = new JFrame("Crypto_Analizer_Gorillaz");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
         contentPane = frame.getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
@@ -61,6 +60,15 @@ public class GuiApplication {
         addRadioButtonsListener();
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private DataContainer getUserAllResponse() {
+        String source = sourceField.getText();
+        String destination = destinationField.getText();
+        String dictionary = dictionaryField.getText();
+        int key = Integer.parseInt(keyField.getText());
+
+        return new DataContainer(selectOperation, source, destination, dictionary, key);
     }
 
     private void fillFrame() {
@@ -73,26 +81,17 @@ public class GuiApplication {
         contentPane.add(panelOperation);
     }
 
-    private void createButtons() {
-        submitButton = new JButton("Submit");
-        panelInput.add(submitButton);
-    }
-
-    private void getUserAllResponse() {
-        String source = sourceField.getText();
-        String destination = destinationField.getText();
-        String dictionary = dictionaryField.getText();
-        int key = Integer.parseInt(keyField.getText());
-
-        dataContainer = new DataContainer(selectOperation, source, destination, dictionary, key);
-    }
-
     private void createPanels() {
         FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
         GridLayout gridLayout = new GridLayout(5, 2, 5, 5);
 
         panelOperation = new JPanel(flowLayout);
         panelInput = new JPanel(gridLayout);
+    }
+
+    private void createButtons() {
+        submitButton = new JButton("Submit");
+        panelInput.add(submitButton);
     }
 
     private void createFields() {
