@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.javarush.myasnikov.swingApp">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="0" y="42" width="455" height="485"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="23f40" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="142" height="47"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Файл незашифрованый"/>
+        </properties>
+      </component>
+      <component id="b444c" class="javax.swing.JButton" binding="executeButton">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="105" height="47"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Выполнить"/>
+        </properties>
+      </component>
+      <component id="25b58" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="142" height="268"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Файл для взлома"/>
+        </properties>
+      </component>
+      <component id="501a4" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="142" height="47"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Файл зашифрованый"/>
+        </properties>
+      </component>
+      <component id="81975" class="javax.swing.JLabel" binding="commandsLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="142" height="17"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Режим"/>
+        </properties>
+      </component>
+      <component id="d39a3" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="142" height="17"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Ключ"/>
+        </properties>
+      </component>
+      <component id="cc3a4" class="javax.swing.JTextField" binding="keyField">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="1.0" weighty="0.0" ipadx="102"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="2"/>
+          <minimumSize width="100" height="34"/>
+          <preferredSize width="90" height="34"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="2ce89" class="javax.swing.JComboBox" binding="commandCombo">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0" ipadx="102"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <minimumSize width="100" height="34"/>
+          <preferredSize width="100" height="34"/>
+          <toolTipText value="Шифрование&#10;Дешифрование&#10;Взлом"/>
+        </properties>
+      </component>
+      <scrollpane id="468d3">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="389" height="0"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="1.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8686e" class="javax.swing.JTextPane" binding="textField">
+            <constraints/>
+            <properties>
+              <editable value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="1e1f9" class="javax.swing.JButton" binding="openDecryptedFileButton">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Открыть"/>
+        </properties>
+      </component>
+      <component id="7e8be" class="javax.swing.JButton" binding="openEncryptedFileButton">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Открыть"/>
+        </properties>
+      </component>
+      <component id="881ed" class="javax.swing.JButton" binding="openBruteForceFileButton">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Открыть"/>
+        </properties>
+      </component>
+      <component id="fc858" class="javax.swing.JTextField" binding="decryptedFilePath">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="78" height="268"/>
+          </grid>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="21b1" class="javax.swing.JTextField" binding="encryptedFilePath">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="78" height="268"/>
+          </grid>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <component id="f4ca8" class="javax.swing.JTextField" binding="bruteForceFilePath">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="78" height="268"/>
+          </grid>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
