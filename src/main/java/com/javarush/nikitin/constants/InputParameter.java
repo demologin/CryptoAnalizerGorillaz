@@ -21,6 +21,7 @@ public enum InputParameter {
             "1",
             "1"),
     ;
+
     static {
         int maxKeyAlphabet = Alphabet.size() - 1;
         KEY.message = "Enter key from 0 to " + maxKeyAlphabet + " OR default";

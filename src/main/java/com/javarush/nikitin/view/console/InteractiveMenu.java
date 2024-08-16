@@ -24,30 +24,31 @@ public class InteractiveMenu {
     }
 
     DataContainer executeMenu() {
-        Operation type = getTypeOperation();
+        var type = getTypeOperation();
         return getUserAllResponse(type);
     }
 
-    private void printMessage(String message) {
-        System.out.println(message);
-    }
-
-    private void printMessage(String message, String details) {
-        System.out.printf("%s: %s\n", message, details);
-    }
-
     private Operation getTypeOperation() {
+        int number = getUserInput();
+        checkForExit(number);
+        return Operation.getInstance(number);
+    }
+
+    private int getUserInput() {
         while (true) {
             printMessage(MENU);
             String scanLine = scanner.nextLine();
             if (scanLine.matches(PATTERN_COMMANDS_MENU)) {
-                int number = Integer.parseInt(scanLine);
-                if (number == 0) {
-                    printMessage("Goodbye");
-                }
-                return Operation.getInstance(number);
+                return Integer.parseInt(scanLine);
             }
             printMessage(ENTER_CORRECT_COMMAND);
+        }
+    }
+
+    private void checkForExit(int number) {
+        if (number == 0) {
+            printMessage("Goodbye");
+            throw new ApplicationException("This is the exit from the application");
         }
     }
 
@@ -80,5 +81,13 @@ public class InteractiveMenu {
         } catch (NumberFormatException e) {
             throw new ApplicationException("invalid key = " + input, e);
         }
+    }
+
+    private void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    private void printMessage(String message, String details) {
+        System.out.printf("%s: %s\n", message, details);
     }
 }
