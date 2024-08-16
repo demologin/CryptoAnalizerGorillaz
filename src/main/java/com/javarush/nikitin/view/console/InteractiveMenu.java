@@ -4,7 +4,9 @@ import com.javarush.nikitin.constants.InputParameter;
 import com.javarush.nikitin.constants.Operation;
 import com.javarush.nikitin.entity.DataContainer;
 import com.javarush.nikitin.exceptions.ApplicationException;
+import com.javarush.nikitin.util.PathBuilder;
 
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class InteractiveMenu {
@@ -55,31 +57,38 @@ public class InteractiveMenu {
     private DataContainer getUserAllResponse(Operation type) {
         return switch (type) {
             case ENCRYPT, DECRYPT -> new DataContainer(type,
-                    getInputData(type, InputParameter.SOURCE),
-                    getInputData(type, InputParameter.DESTINATION),
-                    getInputKey(type, InputParameter.KEY)
+                    getPath(type, InputParameter.SOURCE),
+                    getPath(type, InputParameter.DESTINATION),
+                    getKey(type, InputParameter.KEY)
             );
             case BRUTE_FORCE -> new DataContainer(type,
-                    getInputData(type, InputParameter.SOURCE),
-                    getInputData(type, InputParameter.DESTINATION),
-                    getInputData(type, InputParameter.DICTIONARY)
+                    getPath(type, InputParameter.SOURCE),
+                    getPath(type, InputParameter.DESTINATION),
+                    getPath(type, InputParameter.DICTIONARY)
             );
         };
     }
 
-    private String getInputData(Operation type, InputParameter parameter) {
+    private Path getPath(Operation type, InputParameter parameter) {
+        String inputString = getInputString(type, parameter);
+        return PathBuilder.buildPath(inputString);
+    }
+
+    private String getInputString(Operation type, InputParameter parameter) {
         printMessage(parameter.getMessage(), parameter.getDefaultValue(type));
 
         String input = scanner.nextLine();
-        return input.isEmpty() ? parameter.getDefaultValue(type) : input;
+        return input.isEmpty()
+                ? parameter.getDefaultValue(type)
+                : input;
     }
 
-    private int getInputKey(Operation type, InputParameter parameter) {
-        String input = getInputData(type, parameter);
+    private int getKey(Operation type, InputParameter parameter) {
+        String inputString = getInputString(type, parameter);
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
-            throw new ApplicationException("invalid key = " + input, e);
+            throw new ApplicationException("invalid key = " + inputString, e);
         }
     }
 

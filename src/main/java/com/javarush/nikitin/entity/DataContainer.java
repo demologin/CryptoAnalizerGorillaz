@@ -2,19 +2,22 @@ package com.javarush.nikitin.entity;
 
 import com.javarush.nikitin.constants.InputParameter;
 import com.javarush.nikitin.constants.Operation;
+import com.javarush.nikitin.util.PathBuilder;
 
-public record DataContainer(Operation type, String source, String destination, String dictionary, int key) {
+import java.nio.file.Path;
+
+public record DataContainer(Operation type, Path source, Path destination, Path dictionary, int key) {
     public DataContainer {
-        source = (source == null || source.isEmpty())
-                ? InputParameter.SOURCE.getDefaultValue(type)
+        source = (source == null)
+                ? PathBuilder.buildPath(InputParameter.SOURCE.getDefaultValue(type))
                 : source;
 
-        destination = (destination == null || destination.isEmpty())
-                ? InputParameter.DESTINATION.getDefaultValue(type)
+        destination = (destination == null)
+                ? PathBuilder.buildPath(InputParameter.DESTINATION.getDefaultValue(type))
                 : destination;
 
-        dictionary = (dictionary == null || dictionary.isEmpty())
-                ? InputParameter.DICTIONARY.getDefaultValue(type)
+        dictionary = (dictionary == null)
+                ? PathBuilder.buildPath(InputParameter.DICTIONARY.getDefaultValue(type))
                 : dictionary;
 
         key = (key == 1)
@@ -22,16 +25,11 @@ public record DataContainer(Operation type, String source, String destination, S
                 : key;
     }
 
-    public DataContainer(Operation type, String source, String destination, int key) {
-        this(type, source, destination, "", key);
+    public DataContainer(Operation type, Path source, Path destination, int key) {
+        this(type, source, destination, null, key);
     }
 
-    public DataContainer(Operation type, String source, String destination, String dictionary) {
+    public DataContainer(Operation type, Path source, Path destination, Path dictionary) {
         this(type, source, destination, dictionary, InputParameter.KEY.getDefaultKeyAsInt());
-    }
-
-    //test
-    public DataContainer(Operation type) {
-        this(type, "", "", "", 0);
     }
 }

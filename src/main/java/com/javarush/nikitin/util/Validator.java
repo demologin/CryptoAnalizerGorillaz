@@ -33,9 +33,8 @@ public class Validator {
         }
     }
 
-    private static void isValidPath(String path) {
-        Path buildPath = PathBuilder.buildPath(path);
-        if (!Files.exists(buildPath)) {
+    private static void isValidPath(Path path) {
+        if (!Files.exists(path)) {
             throw new ApplicationException("File not found " + path);
         }
     }

@@ -5,7 +5,6 @@ import com.javarush.nikitin.entity.DataContainer;
 import com.javarush.nikitin.exceptions.ApplicationException;
 import com.javarush.nikitin.useCase.BruteForceCaesar;
 import com.javarush.nikitin.useCase.CryptologistCaesar;
-import com.javarush.nikitin.util.PathBuilder;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,15 +17,11 @@ public class DataProcessor {
     }
 
     public void executeDataOperation(DataContainer data) {
-        Path pathSource = PathBuilder.buildPath(data.source());
-        Path pathDestination = PathBuilder.buildPath(data.destination());
-
         int key = data.key();
         if (data.type() == Operation.BRUTE_FORCE) {
-            Path pathDictionary = PathBuilder.buildPath(data.dictionary());
-            key = ((BruteForceCaesar) cryptologist).findBestKey(pathSource, pathDictionary);
+            key = ((BruteForceCaesar) cryptologist).findBestKey(data.source(), data.dictionary());
         }
-        writeEncryptedData(pathSource, pathDestination, key);
+        writeEncryptedData(data.source(), data.destination(), key);
 
     }
 

@@ -9,6 +9,7 @@ import com.javarush.nikitin.util.PathBuilder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.nio.file.Path;
 
 public class GuiApplication {
     private final DataController dataController;
@@ -63,9 +64,9 @@ public class GuiApplication {
     }
 
     private DataContainer getUserAllResponse() {
-        String source = sourceField.getText();
-        String destination = destinationField.getText();
-        String dictionary = dictionaryField.getText();
+        Path source = PathBuilder.buildPath(sourceField.getText());
+        Path destination = PathBuilder.buildPath(destinationField.getText());
+        Path dictionary = PathBuilder.buildPath(dictionaryField.getText());
         int key = Integer.parseInt(keyField.getText());
 
         return new DataContainer(selectOperation, source, destination, dictionary, key);
