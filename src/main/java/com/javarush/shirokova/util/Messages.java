@@ -23,17 +23,16 @@ public class Messages {
     public static final String DEFAULT_INPUT_FILE_MESSAGE = "Using default input file: ";
     public static final String DEFAULT_OUTPUT_FILE_MESSAGE = "Using default output file: ";
     public static final String PROMPT_KEY = "Enter the encryption key: ";
-    public static final String SUCCESS_ENCRYPT = "File successfully encrypted";
-    public static final String SUCCESS_DECRYPT = "File successfully decrypted";
+    public static final String SUCCESS_ENCRYPT = "File successfully encrypted.";
+    public static final String SUCCESS_DECRYPT = "File successfully decrypted.";
 
     public static final String ERROR_IO = "I/O error: ";
     public static final String ERROR_FORBIDDEN_FILE_PATH = "Error, path contains forbidden part: ";
     public static final String ERROR_PATH_IS_DIRECTORY = "The given path is a directory.";
     public static final String ERROR_FILE_DOES_NOT_EXIST = "The file with given path does not exist.";
-    public static final String ERROR_FILE_IS_NOT_WRITABLE = "This file is not accessible for writing";
+    public static final String ERROR_FILE_IS_NOT_WRITABLE = "This file is not accessible for writing.";
     public static final String ERROR_FILE_IS_NOT_READABLE = "You do not have right to read this file.";
-    public static final String ERROR_INVALID_FOR_READING = "Invalid path for reading: ";
-    public static final String ERROR_INVALID_FOR_WRITING = "Invalid path for writing: ";
+    public static final String ERROR_TRY_ENTER_PATH_AGAIN = "Try to enter the path again.";
 
     public static final String ERROR_INVALID_KEY = "Invalid key format. Please enter a number.";
     public static final String ERROR_INVALID_CHOICE = "Invalid choice. Please try again.";
