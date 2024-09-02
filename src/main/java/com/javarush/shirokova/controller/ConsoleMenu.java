@@ -24,7 +24,7 @@ public class ConsoleMenu {
     public ConsoleMenu(UserInterface userInterface, FileProcessor fileProcessor) {
         this.userInterface = userInterface;
         this.fileProcessor = fileProcessor;
-        this.pathNameValidator = new PathNameValidator();
+        this.pathNameValidator = new PathNameValidator(userInterface);
     }
 
     /**
@@ -50,7 +50,7 @@ public class ConsoleMenu {
                 break;
             }
             if (operation == null) {
-                System.out.println(Messages.ERROR_INVALID_CHOICE);
+                userInterface.showMessage(Messages.ERROR_INVALID_CHOICE);
                 continue;
             }
             operation.execute();
@@ -110,7 +110,7 @@ public class ConsoleMenu {
 
             if (filePath.isEmpty()) { // default
                 filePath = pathNameValidator.getDefaultPath(isEncryption, isForReading);
-                System.out.println(defaultFileMessage + filePath);
+                userInterface.showMessage(defaultFileMessage + filePath);
                 return filePath;
             } else if (isForReading) {// entered
                 if (pathNameValidator.isPathValidForReading(filePath)) {
@@ -121,7 +121,7 @@ public class ConsoleMenu {
                     return filePath;
                 }
             }
-            System.out.println(Messages.ERROR_TRY_ENTER_PATH_AGAIN);
+            userInterface.showMessage(Messages.ERROR_TRY_ENTER_PATH_AGAIN);
         }
     }
 }

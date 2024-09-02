@@ -20,9 +20,9 @@ public class Main {
     public static void main(String[] args) {
         Alphabet alphabet = new Alphabet();
         Cipher cipher = new CaesarCipher(alphabet);
-        FileHandler fileHandler = new TextFileHandler();
         UserInterface userInterface = new ConsoleUserInterface();
-        FileProcessor fileProcessor = new FileProcessor(fileHandler, cipher);
+        FileHandler fileHandler = new TextFileHandler();
+        FileProcessor fileProcessor = new FileProcessor(fileHandler, cipher, userInterface);
         ConsoleMenu consoleMenu = new ConsoleMenu(userInterface, fileProcessor);
 
         consoleMenu.run();

@@ -13,7 +13,6 @@ import java.io.IOException;
  * It implements the FileHandler interface.
  */
 public class TextFileHandler implements FileHandler {
-    private final PathNameValidator pathValidator = new PathNameValidator();
 
     /**
      * Reads the content of a text file and returns it as a String.

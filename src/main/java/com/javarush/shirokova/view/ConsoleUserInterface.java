@@ -22,9 +22,9 @@ public class ConsoleUserInterface implements UserInterface {
      */
     @Override
     public void showMenu() {
-        System.out.println(Messages.PROMPT_MENU);
+        showMessage(Messages.PROMPT_MENU);
         for (Operation operation : Operation.values()) {
-            System.out.println(operation.getNumber() + ". " + operation.getDescription());
+            showMessage(operation.getNumber() + ". " + operation.getDescription());
         }
     }
 
@@ -36,7 +36,7 @@ public class ConsoleUserInterface implements UserInterface {
      */
     @Override
     public String getUserInput(String prompt) {
-        System.out.print(prompt);
+        showMessage(prompt);
         try {
             return reader.readLine();
         } catch (IOException e) {
@@ -52,8 +52,20 @@ public class ConsoleUserInterface implements UserInterface {
      */
     @Override
     public void showWelcomeMessage() {
-        System.out.println(Messages.WELCOME_MESSAGE);
-        System.out.println(Messages.FUNCTIONALITY_DESCRIPTION);
-        System.out.println();
+        showMessage(Messages.WELCOME_MESSAGE);
+        showMessage(Messages.FUNCTIONALITY_DESCRIPTION);
+        showMessage("");
+    }
+
+    /**
+     * Displays a message to the user in the console.
+     *
+     * @param message the message to be displayed to the user.
+     *                It should be a non-null string that provides context
+     *                or information relevant to the user.
+     */
+    @Override
+    public void showMessage(String message) {
+        System.out.println(message);
     }
 }

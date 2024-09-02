@@ -1,5 +1,7 @@
 package com.javarush.shirokova.util;
 
+import com.javarush.shirokova.view.UserInterface;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +21,11 @@ public class PathNameValidator {
     public static String DEFAULT_ENCRYPTED_FILE_PATH = TXT_FOLDER + "encrypted.txt";
     public static String DEFAULT_DECRYPTED_FILE_PATH = TXT_FOLDER + "decrypted.txt";
 
+    private final UserInterface userInterface;
+
+    public PathNameValidator(UserInterface userInterface) {
+        this.userInterface = userInterface;
+    }
 
     /**
      * Checks if the specified file path contains forbidden directories or filenames.
@@ -32,7 +39,7 @@ public class PathNameValidator {
 
         for (String pathPart : pathParts) {
             if (FORBIDDEN_DIRS_FILES.contains(pathPart)) {
-                System.out.println(Messages.ERROR_FORBIDDEN_FILE_PATH + pathPart);
+                userInterface.showMessage(Messages.ERROR_FORBIDDEN_FILE_PATH + pathPart);
                 valid = false;
                 break;
             }
@@ -49,16 +56,16 @@ public class PathNameValidator {
     public boolean isPathValidForWriting(String filepath) {
         boolean valid = true;
         Path path = Path.of(filepath);
-        System.out.println("Validating path: " + filepath); // Отладочная информация
+        userInterface.showMessage("Validating path: " + filepath); // Отладочная информация
 
         if (Files.isDirectory(path)) {
             valid = false;
-            System.out.println(Messages.ERROR_PATH_IS_DIRECTORY);
+            userInterface.showMessage(Messages.ERROR_PATH_IS_DIRECTORY);
         } else if (isFilePathForbidden(filepath)) {
             valid = false;
         } else if (!Files.isWritable(path)) {
             valid = false;
-            System.out.println(Messages.ERROR_FILE_IS_NOT_WRITABLE);
+            userInterface.showMessage(Messages.ERROR_FILE_IS_NOT_WRITABLE);
         }
         return valid;
     }
@@ -72,19 +79,19 @@ public class PathNameValidator {
     public boolean isPathValidForReading(String filepath) {
         boolean valid = true;
         Path path = Path.of(filepath);
-        System.out.println("Validating path: " + filepath); // Отладочная информация
+        userInterface.showMessage("Validating path: " + filepath); // Отладочная информация
 
         if (Files.notExists(path)) {
             valid = false;
-            System.out.println(Messages.ERROR_FILE_DOES_NOT_EXIST);
+            userInterface.showMessage(Messages.ERROR_FILE_DOES_NOT_EXIST);
         } else if (Files.isDirectory(path)) {
             valid = false;
-            System.out.println(Messages.ERROR_PATH_IS_DIRECTORY);
+            userInterface.showMessage(Messages.ERROR_PATH_IS_DIRECTORY);
         } else if (isFilePathForbidden(filepath)) {
             valid = false;
         } else if (!Files.isReadable(path)) {
             valid = false;
-            System.out.println(Messages.ERROR_FILE_IS_NOT_READABLE);
+            userInterface.showMessage(Messages.ERROR_FILE_IS_NOT_READABLE);
         }
         return valid;
     }

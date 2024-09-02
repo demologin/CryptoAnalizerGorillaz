@@ -2,6 +2,7 @@ package com.javarush.shirokova.service;
 
 import com.javarush.shirokova.util.Messages;
 import com.javarush.shirokova.model.Cipher;
+import com.javarush.shirokova.view.UserInterface;
 
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 public class FileProcessor {
     private final FileHandler fileHandler;
     private final Cipher cipher;
+    private final UserInterface userInterface;
 
     /**
      * Constructor for creating a FileProcessor instance.
@@ -18,9 +20,10 @@ public class FileProcessor {
      * @param fileHandler Object implementing FileHandler for file operations.
      * @param cipher      Object implementing Cipher for encryption/decryption.
      */
-    public FileProcessor(FileHandler fileHandler, Cipher cipher) {
+    public FileProcessor(FileHandler fileHandler, Cipher cipher, UserInterface userInterface) {
         this.fileHandler = fileHandler;
         this.cipher = cipher;
+        this.userInterface = userInterface;
     }
 
     /**
@@ -36,7 +39,7 @@ public class FileProcessor {
             String content = fileHandler.readFile(inputFile);
             String processedContent = encrypt ? cipher.encrypt(content, key) : cipher.decrypt(content, key);
             fileHandler.writeFile(outputFile, processedContent);
-            System.out.println(encrypt ? Messages.SUCCESS_ENCRYPT : Messages.SUCCESS_DECRYPT);
+            userInterface.showMessage(encrypt ? Messages.SUCCESS_ENCRYPT : Messages.SUCCESS_DECRYPT);
         } catch (IOException e) {
             System.err.println(Messages.ERROR_IO + e.getMessage());
         }
