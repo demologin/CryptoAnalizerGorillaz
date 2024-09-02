@@ -34,10 +34,13 @@ public class CaesarCipher implements Cipher {
         for (int i = 0; i < originalText.length(); i++) {
             Character originalChar = toLowerCase(originalText.charAt(i));
             int originalCharIndex = alphabet.getIndexOfChar(originalChar);
-            if (originalCharIndex ==-1){
+            if (originalCharIndex == -1) {
                 result.append(originalChar);
             } else {
-                int newCharIndex = (alphabet.getSize() + originalCharIndex + key) % alphabet.getSize();
+                int newCharIndex = (originalCharIndex + key) % alphabet.getSize();
+                if (newCharIndex < 0) {
+                    newCharIndex = alphabet.getSize() + newCharIndex;
+                }
                 result.append(alphabet.getCharByIndex(newCharIndex));
             }
         }
